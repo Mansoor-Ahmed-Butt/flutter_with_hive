@@ -1,16 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_with_hive/core/app_router.dart';
+import 'package:flutter_with_hive/core/themes.dart';
 import 'package:get/get.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  
+  runApp( MyApp());
+  await Future.delayed(const Duration(seconds: 1));
+  FlutterNativeSplash.remove();
+
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  ColorScheme appColors = ColorScheme.fromSeed(seedColor: AppColors.primaryColor);
+   MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(title: "Responsive UI with GetX", debugShowCheckedModeBanner: false, home: const ResponsiveHomePage());
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp.router(
+        routerDelegate: RouteConfig.routes.routerDelegate,
+        routeInformationParser: RouteConfig.routes.routeInformationParser,
+        routeInformationProvider: RouteConfig.routes.routeInformationProvider,
+        // localizationsDelegates: context.localizationDelegates,
+        // supportedLocales: context.supportedLocales,
+        // locale: context.locale,
+        title: "Hive with Flutter",
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColor: Colors.green,
+          colorScheme: appColors,
+          highlightColor: const Color(0xffFC9D74),
+          textSelectionTheme: TextSelectionThemeData(
+            selectionColor: AppColors.bodyText.withOpacity(0.4),
+            cursorColor: AppColors.primaryColor,
+            selectionHandleColor: AppColors.primaryColor,
+          ),
+        ),
+        debugShowCheckedModeBanner: false,
+        // builder: EasyLoading.init(),
+      ),
+
+      // MaterialApp.router(
+      //   routerConfig: router,
+      //   debugShowCheckedModeBanner: false,
+      //   title: 'Hive with Flutter',
+      //   theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
+      // ),
+    );
+
+    // return GetMaterialApp(title: "Responsive UI with GetX", debugShowCheckedModeBanner: false, home: const ResponsiveHomePage());
   }
 }
 
