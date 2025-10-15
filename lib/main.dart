@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_with_hive/core/app_router.dart';
 import 'package:flutter_with_hive/core/themes.dart';
 import 'package:get/get.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  
-  runApp( MyApp());
-  await Future.delayed(const Duration(seconds: 1));
-  FlutterNativeSplash.remove();
 
+  var directory = getApplicationDocumentsDirectory();
+  Hive.init((await directory).path);
+
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await Future.delayed(const Duration(milliseconds: 200));
+  Stripe.publishableKey = "pk_test_51SIQ7T2ZnDzySriKV8vzDIRaLmNuDMpmreUQtq4TLskThdHh5qZQLxe8zWcPbHwl5eQgyw6ZYvxairkcF828wCFB00bttC5U6L";
+  runApp(GlobalLoaderOverlay(child: MyApp()));
+
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
-  ColorScheme appColors = ColorScheme.fromSeed(seedColor: AppColors.primaryColor);
-   MyApp({super.key});
+  final ColorScheme appColors = ColorScheme.fromSeed(seedColor: AppColors.primaryColor);
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

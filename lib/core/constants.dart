@@ -1,20 +1,23 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_with_hive/core/responsive.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:intl/intl.dart';
 
-
 bool isDebug = true;
 
 String globalApiLink = "https://dev3.globalgroup.co/api/v2/";
 String globalAdminApiLink = "https://admindev.globalgroup.co/api/v2/";
-String apiLink = "https://payrolldev.globalgroup.co/api/v2/";
+String apiLink = "https://back-end-strip.onrender.com";
 String companyname = "Technupur";
 String fontFamily = "Montserrat";
+String tokenType = "bearer";
+String accessToken =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZmFyeWFkLmF6aW1AdGVjaG51cHVyLmNvbSIsImp0aSI6IjY0ZDI5ZTlmLTA1NDUtNDMyYy04YmY3LTk1OTk2MmE5NGRjYiIsIlVzZXJJZCI6ImUyYTQ3MjI0LWZlMjYtNDg1ZS1hODIyLTI5NjQxM2RkNTk2ZCIsImV4cCI6MTczODc2NTAwNCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzExNSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzExNSJ9.xeJ0B9ExOYg5RxlXCJDgKnGWf2ucK7W30VDeZ8UARj4";
+
 RxBool isLoggingInInvitedUser = false.obs;
 String referralCode = "";
 String appVersion = "Dev - 0.1.1";
+int companyId = 1;
 RxString selectedMenuItem = "".obs;
 
 String fileName = "payrollSummaryHistory";
@@ -104,12 +107,8 @@ int companyIdEmployee = 20;
 RxBool stepsCompleted = false.obs;
 // int companyIdForTimeSheet = 22;
 // int companyIdForContractorTimeSheet = 30;
-RxList dropDownValuesforSave = [
-  "Save and New",
-].obs;
-RxList dropDownValuesforSaveAndClose = [
-  "Save and Close",
-].obs;
+RxList dropDownValuesforSave = ["Save and New"].obs;
+RxList dropDownValuesforSaveAndClose = ["Save and Close"].obs;
 bool isUserAlreadyLogedin = false;
 String formateDatewithTime(String value) {
   // printLog("Function called of formated date and value is $value");
@@ -486,25 +485,25 @@ double globalWidthOfFiled(context) {
   return (Responsive.isDesktop(context))
       ? MediaQuery.of(context).size.width * 0.27
       : (Responsive.isTablet(context))
-          ? MediaQuery.of(context).size.width * 0.48
-          : MediaQuery.of(context).size.width * 0.98;
+      ? MediaQuery.of(context).size.width * 0.48
+      : MediaQuery.of(context).size.width * 0.98;
 }
 
 double globalWidthOfFiledAS4(context) {
   return (Responsive.isDesktop(context))
       ? MediaQuery.of(context).size.width * 0.202
       : (Responsive.isTablet(context))
-          ? MediaQuery.of(context).size.width * 0.48
-          : MediaQuery.of(context).size.width * 0.98;
+      ? MediaQuery.of(context).size.width * 0.48
+      : MediaQuery.of(context).size.width * 0.98;
 }
 
 double getHeight(context) {
   return MediaQuery.of(context).size.height;
 }
 
-
 bool isValidUrlWeb(String url) {
-  final pattern = r'^(https?:\/\/)?' // optional http or https
+  final pattern =
+      r'^(https?:\/\/)?' // optional http or https
       r'(([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})' // domain
       r'(\/[^\s]*)?$'; // optional path
   final regex = RegExp(pattern);

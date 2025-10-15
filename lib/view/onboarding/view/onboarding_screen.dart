@@ -10,7 +10,6 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
@@ -20,27 +19,26 @@ class OnboardingScreen extends StatelessWidget {
           itemCount: controller.pages.length,
 
           itemBuilder: (context, index) {
+            print("INdex $index");
             final page = controller.pages[index];
-            return SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: screenHeight * 0.2),
-                  page.isLottie ? Lottie.asset(page.image, height: 250) : Image.asset(page.image, height: 250),
-                  SizedBox(height: 10),
-                  Text(page.title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      page.description,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-                    ),
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: screenHeight * 0.2),
+                page.isLottie ? Lottie.asset(page.image, height: 250) : Image.asset(page.image, height: 250),
+                SizedBox(height: 10),
+                Text(page.title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    page.description,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           },
         ),
@@ -52,7 +50,7 @@ class OnboardingScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Skip Button
-                controller.isLastPage ? Container() : TextButton(onPressed: controller.skip, child: const Text("Skip")),
+                controller.isLastPage ? Text("") : TextButton(onPressed: () => controller.skip(), child: const Text("Skip")),
 
                 //  Page Indicator (clickable dots)
                 Row(

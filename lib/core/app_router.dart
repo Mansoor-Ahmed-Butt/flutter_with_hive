@@ -1,3 +1,4 @@
+import 'package:flutter_with_hive/strip_testing.dart';
 import 'package:flutter_with_hive/view/onboarding/view/onboarding_screen.dart';
 import 'package:flutter_with_hive/view/log_in/view/log_in.dart';
 import 'package:get/get.dart';
@@ -7,12 +8,23 @@ class RouteConfig {
   //Signup
   static const String paymentPlanRoute = "/Login";
   static const String logInScreenRoute = "/Login";
+  static const String onboardingScreen = "/onBoarding";
 
   static GoRouter routes = GoRouter(
     initialLocation: "/",
     navigatorKey: Get.key,
     routes: [
-      GoRoute(path: '/', builder: (context, state) => OnboardingScreen()),
+      GoRoute(path: '/', builder: (context, state) => StripTesting()),
+      // GoRoute(path: '/', builder: (context, state) => OnboardingScreen()),
+      GoRoute(
+        path: '/onBoarding',
+        name: onboardingScreen,
+        //  builder: (context, state) => SignUp()
+        builder: (context, state) {
+          // print("This is state $state \n This is context ${Get.key}");
+          return OnboardingScreen();
+        },
+      ),
       GoRoute(
         path: '/Login',
         name: logInScreenRoute,

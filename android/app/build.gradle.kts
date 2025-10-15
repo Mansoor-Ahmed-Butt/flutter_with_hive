@@ -35,10 +35,23 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+              getByName("release") {
+        isMinifyEnabled = true
+        isShrinkResources = true
+        proguardFiles(
+            getDefaultProguardFile("proguard-android-optimize.txt"),
+            "proguard-rules.pro"
+        )
+    }
         }
     }
 }
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Material Components for Android (needed for Theme.MaterialComponents)
+    implementation("com.google.android.material:material:1.9.0")
 }

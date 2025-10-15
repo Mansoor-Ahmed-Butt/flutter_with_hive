@@ -19,7 +19,12 @@ class OnboardingController extends GetxController {
       description: "Keep track of your work with smart task lists.",
       isLottie: true,
     ),
-    OnboardingModel(image: AppAssets.aiBot, title: "Achieve Goals", description: "Boost productivity and achieve your goals faster.", isLottie: true),
+    OnboardingModel(
+      image: AppAssets.liveChatBot,
+      title: "Achieve Goals",
+      description: "Boost productivity and achieve your goals faster.",
+      isLottie: true,
+    ),
   ].obs;
 
   // Track current page index
@@ -27,6 +32,7 @@ class OnboardingController extends GetxController {
 
   void setPage(int index) {
     currentPage.value = index;
+    print("Current Page: $currentPage");
   }
 
   bool get isLastPage => currentPage.value == pages.length - 1;

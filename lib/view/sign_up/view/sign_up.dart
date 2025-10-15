@@ -37,8 +37,17 @@ class _LogInState extends State<LogIn> {
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 12,
               children: [
-                Text("Log In", style: AppStyle.style30w700(color: Colors.white)),
+                Text("Sign Up", style: AppStyle.style30w700(color: Colors.white)),
                 SizedH(6),
+                MyTextFieldForSingleLine(
+                  isCustomHeight: true,
+                  containerHeight: 35,
+                  hintText: 'Enter Name',
+                  labelText: "Email",
+                  controller: controller.emailController,
+                  isRequired: true,
+                  prefixIcon: CustomIcon(size: 16.sp, iconOnly: true, iconColor: AppColors.greyColor, icon: Icons.email),
+                ),
                 MyTextFieldForSingleLine(
                   isCustomHeight: true,
                   containerHeight: 35,

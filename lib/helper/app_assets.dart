@@ -6,6 +6,7 @@ class AppAssets {
   // Images
   static const String bgImage = "${imgPath}bgImage.jpg";
   static const String logo = "${imgPath}logo.jpg";
+  static const String loaderCv = "${imgPath}loader_cv.png";
 
   // Lottie Path
   static const String lottiePath = "assets/lottie/";

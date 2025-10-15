@@ -10,7 +10,7 @@ packages:
     source: hosted
     version: "67.0.0"
   analyzer:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: analyzer
       sha256: "37577842a27e4338429a1cbc32679d508836510b056f1eedf0c8d20e39c1383d"
@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.13.0"
+  back_button_interceptor:
+    dependency: transitive
+    description:
+      name: back_button_interceptor
+      sha256: b85977faabf4aeb95164b3b8bf81784bed4c54ea1aef90a036ab6927ecf80c5a
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.0.4"
   boolean_selector:
     dependency: transitive
     description:
@@ -217,6 +225,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: "567c64b3cb4cf82397aac55f4f0cbd3ca20d77c6c03bedbc4ceaddc08904aef7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.7"
   fake_async:
     dependency: transitive
     description:
@@ -281,6 +297,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  fl_chart:
+    dependency: "direct main"
+    description:
+      name: fl_chart
+      sha256: "7ca9a40f4eb85949190e54087be8b4d6ac09dc4c54238d782a34cf1f7c011de9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -302,6 +326,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.0"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_native_splash:
     dependency: "direct main"
     description:
@@ -326,6 +355,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.9.3"
+  flutter_stripe:
+    dependency: "direct main"
+    description:
+      name: flutter_stripe
+      sha256: febc0ad31f26fb4c7710fd907519b1f7a15f02536f03c4879cb0f9c3ae032e6f
+      url: "https://pub.dev"
+    source: hosted
+    version: "12.0.2"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -352,6 +389,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.2.12"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: "7294967ff0a6d98638e7acb774aac3af2550777accd8149c90af5b014e6d44d8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -465,7 +510,7 @@ packages:
     source: hosted
     version: "3.2.2"
   http_parser:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http_parser
       sha256: "178d74305e7866013777bab2c3d8726205dc5a4dd935297175b19a23a2e66571"
@@ -608,6 +653,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
+  loader_overlay:
+    dependency: "direct main"
+    description:
+      name: loader_overlay
+      sha256: "285c9ccab9a42a392ba948bd0b14376fd0ee9ddd7b63e3018bcd54460fd3e021"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.0"
   logging:
     dependency: transitive
     description:
@@ -656,6 +709,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  overlay_support:
+    dependency: "direct main"
+    description:
+      name: overlay_support
+      sha256: fc39389bfd94e6985e1e13b2a88a125fc4027608485d2d4e2847afe1b2bb339c
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   package_config:
     dependency: transitive
     description:
@@ -681,7 +742,7 @@ packages:
     source: hosted
     version: "1.1.0"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       sha256: "50c5dd5b6e1aaf6fb3a78b33f6aa3afca52bf903a8a5298f53101fdaee55bbcd"
@@ -861,6 +922,62 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.1"
+  stripe_android:
+    dependency: transitive
+    description:
+      name: stripe_android
+      sha256: b331722c9b1af59706f3b1bacb78fbd2e3615874103f897a906422e600becfc2
+      url: "https://pub.dev"
+    source: hosted
+    version: "12.0.1"
+  stripe_ios:
+    dependency: transitive
+    description:
+      name: stripe_ios
+      sha256: "5b2d968515baf73073ec29d12b498620f186f375042ff7a74ccf215d2b4bf37d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "12.0.1"
+  stripe_platform_interface:
+    dependency: transitive
+    description:
+      name: stripe_platform_interface
+      sha256: b3536d9e52b419a6fcbe6d8b372dfdddd32631ac7f43a291829a1f201e42f142
+      url: "https://pub.dev"
+    source: hosted
+    version: "12.0.0"
+  syncfusion_flutter_calendar:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_calendar
+      sha256: "24a1c46ee5dee7fbc8dc66f998eadccd36e1b6a0a514a4dee7939b160e914015"
+      url: "https://pub.dev"
+    source: hosted
+    version: "31.1.21"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: "7c700778e2b390412f3a364aa38fbc010570ade19684b9d6613d17e7ca284898"
+      url: "https://pub.dev"
+    source: hosted
+    version: "31.1.21"
+  syncfusion_flutter_datepicker:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_datepicker
+      sha256: f4cea1c28175a858875507e30d553acfefd2465ed8954052c5a3cb32958d443a
+      url: "https://pub.dev"
+    source: hosted
+    version: "31.1.21"
+  syncfusion_localizations:
+    dependency: transitive
+    description:
+      name: syncfusion_localizations
+      sha256: beb82c9f9012320f87627cfcebc51a74d9cb950941f6a248f41d11f409b0a71b
+      url: "https://pub.dev"
+    source: hosted
+    version: "31.1.21"
   term_glyph:
     dependency: transitive
     description:
@@ -877,6 +994,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.6"
+  timezone:
+    dependency: transitive
+    description:
+      name: timezone
+      sha256: dd14a3b83cfd7cb19e7888f1cbc20f258b8d71b54c06f79ac585f14093a287d1
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.1"
   timing:
     dependency: transitive
     description:
@@ -1063,4 +1188,4 @@ packages:
     version: "3.1.3"
 sdks:
   dart: ">=3.9.0 <4.0.0"
-  flutter: ">=3.35.0"
+  flutter: ">=3.35.1"
