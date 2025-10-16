@@ -1,4 +1,5 @@
-import 'package:flutter_with_hive/strip_testing.dart';
+import 'package:flutter_with_hive/view/ads_display/ads_implementation.dart';
+import 'package:flutter_with_hive/view/ai_chat_bot/chat_screen.dart';
 import 'package:flutter_with_hive/view/onboarding/view/onboarding_screen.dart';
 import 'package:flutter_with_hive/view/log_in/view/log_in.dart';
 import 'package:get/get.dart';
@@ -9,12 +10,16 @@ class RouteConfig {
   static const String paymentPlanRoute = "/Login";
   static const String logInScreenRoute = "/Login";
   static const String onboardingScreen = "/onBoarding";
+  static const String adsScreen = "/adsScreen";
+  static const String aiChatBotScreen = "/aiChatBotScreen";
 
   static GoRouter routes = GoRouter(
     initialLocation: "/",
     navigatorKey: Get.key,
     routes: [
-      GoRoute(path: '/', builder: (context, state) => StripTesting()),
+      GoRoute(path: '/', builder: (context, state) => AiChatbotScreen()),
+      // GoRoute(path: '/', builder: (context, state) => AdsImplementationScreen()),
+      // GoRoute(path: '/', builder: (context, state) => StripTesting()),
       // GoRoute(path: '/', builder: (context, state) => OnboardingScreen()),
       GoRoute(
         path: '/onBoarding',
@@ -23,6 +28,20 @@ class RouteConfig {
         builder: (context, state) {
           // print("This is state $state \n This is context ${Get.key}");
           return OnboardingScreen();
+        },
+      ),
+      GoRoute(
+        path: '/adsScreen',
+        name: adsScreen,
+        builder: (context, state) {
+          return AdsImplementationScreen();
+        },
+      ),
+      GoRoute(
+        path: '/aiChatBotScreen',
+        name: aiChatBotScreen,
+        builder: (context, state) {
+          return AiChatbotScreen();
         },
       ),
       GoRoute(

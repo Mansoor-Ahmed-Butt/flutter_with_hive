@@ -15,16 +15,20 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
 
-            <!-- Flutter’s launch theme (used before the first frame is rendered) -->
-            <meta-data
-                android:name="io.flutter.embedding.android.NormalTheme"
-                android:resource="@style/NormalTheme" />
+                        <!-- Flutter’s launch theme (used before the first frame is rendered) -->
+                        <meta-data
+                                android:name="io.flutter.embedding.android.NormalTheme"
+                                android:resource="@style/NormalTheme" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!-- Google Mobile Ads App ID (test) - must be set as android:value and placed in the application tag -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6604577602748066~6525268137" />
 
         <meta-data
             android:name="flutterEmbedding"

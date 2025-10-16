@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_with_hive/core/constants.dart';
 import 'package:flutter_with_hive/core/themes.dart';
 import 'package:flutter_with_hive/helper/spacing_wraper_for_login.dart';
-import 'package:flutter_with_hive/stripint_testing_controller.dart';
+import 'package:flutter_with_hive/view/stripe_implementation/stripint_testing_controller.dart';
 
 import 'package:flutter_with_hive/widgets/custom_button/custom_button.dart';
 import 'package:flutter_with_hive/widgets/custom_icon_button.dart';
