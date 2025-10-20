@@ -8,6 +8,7 @@ bool isDebug = true;
 String globalApiLink = "https://dev3.globalgroup.co/api/v2/";
 String globalAdminApiLink = "https://admindev.globalgroup.co/api/v2/";
 String apiLink = "https://back-end-strip.onrender.com";
+
 String companyname = "Technupur";
 String fontFamily = "Montserrat";
 String tokenType = "bearer";

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robert Allen - Resume</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 40px 20px;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .resume-container {
+        max-width: 900px;
+        width: 100%;
+        background: #f5f5f5;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        display: flex;
+      }
+
+      /* Left Sidebar */
+      .sidebar {
+        background: linear-gradient(180deg, #4a5568 0%, #2d3748 100%);
+        width: 280px;
+        padding: 40px 30px;
+        color: white;
+      }
+
+      .profile-section {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .profile-image {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid #5ba89f;
+        margin-bottom: 0;
+        object-fit: cover;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .profile-name {
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      .section-title {
+        background: #5ba89f;
+        padding: 12px 20px;
+        margin: 0 -30px 25px -30px;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 13px;
+      }
+
+      .contact-item svg {
+        width: 18px;
+        height: 18px;
+        margin-right: 12px;
+        fill: #5ba89f;
+        flex-shrink: 0;
+      }
+
+      .language-item {
+        padding: 8px 0;
+        font-size: 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .language-item:last-child {
+        border-bottom: none;
+      }
+
+      .skill-item {
+        margin-bottom: 20px;
+      }
+
+      .skill-name {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .skill-bar {
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .skill-progress {
+        height: 100%;
+        background: #5ba89f;
+        border-radius: 4px;
+      }
+
+      /* Right Content */
+      .content {
+        flex: 1;
+        padding: 40px 45px;
+        background: white;
+      }
+
+      .content-section {
+        margin-bottom: 35px;
+      }
+
+      .content-section-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #2d3748;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #5ba89f;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .about-text {
+        line-height: 1.8;
+        color: #4a5568;
+        font-size: 14px;
+      }
+
+      .experience-item {
+        margin-bottom: 30px;
+      }
+
+      .experience-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+      }
+
+      .experience-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #2d3748;
+      }
+
+      .experience-date {
+        font-size: 12px;
+        color: #718096;
+        white-space: nowrap;
+        margin-left: 20px;
+      }
+
+      .experience-company {
+        color: #5ba89f;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .experience-description {
+        color: #4a5568;
+        line-height: 1.7;
+        font-size: 13px;
+      }
+
+      /* Name Header Styles */
+      .name-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e2e8f0;
+      }
+
+      .main-name {
+        font-size: 32px;
+        font-weight: bold;
+        color: #2d3748;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+      }
+
+      .job-title {
+        font-size: 16px;
+        color: #5ba89f;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      @media (max-width: 768px) {
+        .resume-container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+        }
+
+        .section-title {
+          margin: 0 -30px 25px -30px;
+        }
+
+        .experience-header {
+          flex-direction: column;
+        }
+
+        .experience-date {
+          margin-left: 0;
+          margin-top: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="resume-container">
+      <!-- Left Sidebar -->
+      <div class="sidebar">
+        <div class="profile-section">
+          <img
+            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&q=80"
+            alt="Profile"
+            class="profile-image"
+          />
+        </div>
+
+        <!-- Contact Section -->
+        <div class="section-title">CONTACT</div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"
+            />
+          </svg>
+          <span>+1-952-140-6600</span>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+            />
+          </svg>
+          <span>Robertallen@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"
+            />
+          </svg>
+          <span>Linkedin.com/bb5d54</span>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+            />
+          </svg>
+          <span>Amsterdam, Netherlands</span>
+        </div>
+
+        <!-- Languages Section -->
+        <div class="section-title" style="margin-top: 40px">LANGUAGES</div>
+        <div class="language-item">English</div>
+        <div class="language-item">Portuguese</div>
+        <div class="language-item">Spanish</div>
+        <div class="language-item">German</div>
+        <div class="language-item">French</div>
+
+        <!-- Skills Section -->
+        <div class="section-title" style="margin-top: 40px">SKILLS</div>
+        <div class="skill-item">
+          <div class="skill-name">Coding</div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 85%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">UI/UX Design</div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 90%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Testing</div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 75%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Firebase</div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 80%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Content -->
+      <div class="content">
+        <!-- Name at Top -->
+        <div class="name-header">
+          <h1 class="main-name">ROBART ALLEN</h1>
+          <p class="job-title">Senior Customer Success Manager</p>
+        </div>
+
+        <!-- About Me Section -->
+        <div class="content-section">
+          <div class="content-section-title">ABOUT ME</div>
+          <p class="about-text">
+            Enthusiastic Customer Success Manager with 7 years of experience
+            coordinating teams, handling complaints, and improving customer
+            retention. Proven leader in project management and after-sales
+            services, committed to building strong relationships and resolving
+            issues efficiently.
+          </p>
+        </div>
+
+        <!-- Work Experience Section -->
+        <div class="content-section">
+          <div class="content-section-title">WORK EXPERIENCE</div>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <div class="experience-title">
+                  Senior Customer Success Manager
+                </div>
+                <div class="experience-company">Blanchette</div>
+              </div>
+              <div class="experience-date">Jan 2025 - Jan 2025</div>
+            </div>
+            <p class="experience-description">
+              Blanchette is data-driven marketing database company Achieved an
+              average 115% Net Retention Rate (NRR) on a target of 102% for five
+              consecutive Quarters. Developed an end user training for Microsoft
+              Office 365.
+            </p>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <div class="experience-title">
+                  Senior Customer Success Manager
+                </div>
+                <div class="experience-company">Blanchette</div>
+              </div>
+              <div class="experience-date">Jan 2025 - Jan 2025</div>
+            </div>
+            <p class="experience-description">
+              Blanchette is data-driven marketing database company Achieved an
+              average 115% Net Retention Rate (NRR) on a target of 102% for five
+              consecutive Quarters. Developed an end user training for Microsoft
+              Office 365.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

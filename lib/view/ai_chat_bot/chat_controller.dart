@@ -1,5 +1,11 @@
-import 'package:get/get.dart';
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_with_hive/core/global.dart';
+import 'package:flutter_with_hive/core/utils/api_urls.dart';
+import 'package:flutter_with_hive/core/utils/print_log.dart';
+import 'package:get/get.dart';
 import 'dart:convert';
 import 'dart:io';
 
@@ -14,80 +20,107 @@ class Message {
 
 // Chat Controller
 class AiChatBotController extends GetxController {
+  static AiChatBotController get to  => Get.find(); 
   final messages = <Message>[].obs;
   final isTyping = false.obs;
   final textController = TextEditingController();
+  static const String _geminiUrl = '${ApiUrls.geminiUrlFPoint}$geminiModel:generateContent';
 
-  // Gemini / Generative Language API config.
-  // It's recommended to pass the API key at runtime via --dart-define=GEMINI_API_KEY=your_key
-  // For convenience this falls back to the key provided (you can override with dart-define).
-  static const String _geminiApiKey = String.fromEnvironment('GEMINI_API_KEY', defaultValue: 'AIzaSyDI2OdFFyLV00S6-JFv9rDzBv9IVaGCvIU');
+  /// 🌐 Internet connection observable
+  RxBool isOnline = false.obs;
 
-  static const String _geminiModel = 'text-bison-001';
-  static const String _geminiUrl = 'https://generativelanguage.googleapis.com/v1beta2/models/$_geminiModel:generate';
+  /// Connectivity subscription
+  StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
 
   @override
   void onInit() {
     super.onInit();
-    // Welcome message
-    messages.add(Message(text: "Hi! I'm your AI assistant. How can I help you today?", isUser: false, timestamp: DateTime.now()));
+    messages.add(Message(text: "Hi! I'm your AI assistant 🤖. How can I help you today?", isUser: false, timestamp: DateTime.now()));
+    // Start connectivity monitoring
+    _initConnectivity();
   }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////  check online conection
+  ///  Initialize and listen to connectivity changes
+  Future<void> _initConnectivity() async {
+    // Check initial connection
+    final initialResult = await Connectivity().checkConnectivity();
+    isOnline.value = !_isDisconnected(initialResult);
+
+    // Listen to connectivity changes
+    _connectivitySubscription = Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> result) {
+      final onlineNow = !_isDisconnected(result);
+      isOnline.value = onlineNow;
+    });
+  }
+   /// Current connectivity type (wifi, mobile, ethernet, none, etc.)
+  Rx<ConnectivityResult> connectionType = ConnectivityResult.none.obs;
+
+  /// Human-friendly label for the current connection type
+  String get connectionTypeLabel {
+    switch (connectionType.value) {
+      case ConnectivityResult.wifi:
+        return 'Wi‑Fi';
+      case ConnectivityResult.mobile:
+        return 'Mobile';
+      case ConnectivityResult.ethernet:
+        return 'Ethernet';
+      case ConnectivityResult.bluetooth:
+        return 'Bluetooth';
+      case ConnectivityResult.vpn:
+        return 'VPN';
+      case ConnectivityResult.other:
+        return 'Other';
+      case ConnectivityResult.none:
+        return 'None';
+    }
+  }
+
+  /// Helper: Checks if the connection list means offline
+  bool _isDisconnected(List<ConnectivityResult> results) {
+    return results.contains(ConnectivityResult.none);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////// end connection
 
   Future<void> sendMessage(String text) async {
     if (text.trim().isEmpty) return;
 
     // Add user message
     messages.add(Message(text: text, isUser: true, timestamp: DateTime.now()));
-
     textController.clear();
-
-    // Indicate bot is typing while we wait for Gemini
+    // Show typing
     isTyping.value = true;
-
-    // Call Gemini API and append response. If Gemini fails, fall back to the local generator.
-    final responseFromGemini = await _callGemini(text);
-    final response = responseFromGemini ?? _generateResponse(text);
+    // Get response from Gemini
+    final responseText = await _callGemini(text);
 
     isTyping.value = false;
-    messages.add(Message(text: response, isUser: false, timestamp: DateTime.now()));
+
+    // Add bot response
+    messages.add(Message(text: responseText ?? "⚠️ Sorry, I couldn't get a response right now.", isUser: false, timestamp: DateTime.now()));
   }
 
-  String _generateResponse(String userMessage) {
-    // Deprecated: local fallback kept for reference. New implementation uses Gemini.
-    final lower = userMessage.toLowerCase();
-
-    if (lower.contains('hello') || lower.contains('hi')) {
-      return "Hello! How are you doing today?";
-    } else if (lower.contains('how are you')) {
-      return "I'm doing great, thank you for asking! How can I assist you?";
-    } else if (lower.contains('help')) {
-      return "I'm here to help! You can ask me questions, have a conversation, or just chat about anything you'd like.";
-    } else if (lower.contains('bye')) {
-      return "Goodbye! Have a wonderful day! Feel free to come back anytime.";
-    } else {
-      return "That's interesting! Tell me more about that, or feel free to ask me anything else.";
-    }
-  }
-
-  /// Calls Google's Generative Language API (Gemini) using an API key.
-  /// Returns the model's text or a helpful error message.
-  /// Calls Google's Generative Language API (Gemini) using an API key.
-  /// Returns the model's text, or null if the call failed (in which case callers should use a fallback).
+  /// ✅ Correct Gemini API call
   Future<String?> _callGemini(String prompt) async {
-    if (_geminiApiKey.isEmpty) {
+    if (geminiApiKey.isEmpty) {
+      printLog("❌ Gemini API key missing");
       return null;
     }
 
     try {
-      final uri = Uri.parse('$_geminiUrl?key=$_geminiApiKey');
+      final uri = Uri.parse('$_geminiUrl?key=$geminiApiKey');
       final client = HttpClient();
       final request = await client.postUrl(uri);
       request.headers.set(HttpHeaders.contentTypeHeader, 'application/json; charset=utf-8');
 
       final body = jsonEncode({
-        'prompt': {'text': prompt},
-        'maxOutputTokens': 256,
-        'temperature': 0.2,
+        "contents": [
+          {
+            "parts": [
+              {"text": prompt},
+            ],
+          },
+        ],
       });
 
       request.add(utf8.encode(body));
@@ -95,31 +128,23 @@ class AiChatBotController extends GetxController {
       final respBody = await response.transform(utf8.decoder).join();
       client.close();
 
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> decoded = jsonDecode(respBody);
-
-        // Try common response shapes used by the API
-        if (decoded.containsKey('candidates') && decoded['candidates'] is List && decoded['candidates'].isNotEmpty) {
-          final cand = decoded['candidates'][0];
-          if (cand is Map) {
-            return (cand['output'] ?? cand['content'] ?? cand['text'] ?? '') as String;
-          }
-        }
-
-        if (decoded.containsKey('output')) return decoded['output'].toString();
-        if (decoded.containsKey('content')) return decoded['content'].toString();
-
-        return jsonEncode(decoded);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final decoded = jsonDecode(respBody);
+        final text = decoded["candidates"]?[0]?["content"]?["parts"]?[0]?["text"];
+        return text ?? "No response text found.";
       } else {
-        return null;
+        printLog("❌ Gemini API error: ${response.statusCode} - $respBody");
+        return "Error ${response.statusCode}: Unable to fetch response.";
       }
     } catch (e) {
+      printLog("⚠️ Exception during Gemini API call: $e");
       return null;
     }
   }
 
   @override
   void onClose() {
+    _connectivitySubscription?.cancel();
     textController.dispose();
     super.onClose();
   }

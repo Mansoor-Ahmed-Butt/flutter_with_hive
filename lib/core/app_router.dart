@@ -2,6 +2,8 @@ import 'package:flutter_with_hive/view/ads_display/ads_implementation.dart';
 import 'package:flutter_with_hive/view/ai_chat_bot/chat_screen.dart';
 import 'package:flutter_with_hive/view/onboarding/view/onboarding_screen.dart';
 import 'package:flutter_with_hive/view/log_in/view/log_in.dart';
+import 'package:flutter_with_hive/view/user_testing/user_screen.dart';
+import 'package:flutter_with_hive/widgets/navigation_custom/bottom_navigation_bar.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,12 +14,16 @@ class RouteConfig {
   static const String onboardingScreen = "/onBoarding";
   static const String adsScreen = "/adsScreen";
   static const String aiChatBotScreen = "/aiChatBotScreen";
+  static const String userScreen = "/userScreen";
+  static const String bottomNavigation = "/bottomNavigation";
 
   static GoRouter routes = GoRouter(
     initialLocation: "/",
     navigatorKey: Get.key,
     routes: [
-      GoRoute(path: '/', builder: (context, state) => AiChatbotScreen()),
+      GoRoute(path: '/', builder: (context, state) => MainScreen()),
+      // GoRoute(path: '/', builder: (context, state) => UserScreen()),
+      // GoRoute(path: '/', builder: (context, state) => AiChatbotScreen()),
       // GoRoute(path: '/', builder: (context, state) => AdsImplementationScreen()),
       // GoRoute(path: '/', builder: (context, state) => StripTesting()),
       // GoRoute(path: '/', builder: (context, state) => OnboardingScreen()),
@@ -28,6 +34,20 @@ class RouteConfig {
         builder: (context, state) {
           // print("This is state $state \n This is context ${Get.key}");
           return OnboardingScreen();
+        },
+      ),
+      GoRoute(
+        path: '/userScreen',
+        name: userScreen,
+        builder: (context, state) {
+          return UserScreen();
+        },
+      ),
+      GoRoute(
+        path: '/bottomNavigation',
+        name: bottomNavigation,
+        builder: (context, state) {
+          return MainScreen();
         },
       ),
       GoRoute(

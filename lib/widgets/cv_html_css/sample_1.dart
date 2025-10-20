@@ -1,14 +1,94 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'chat_controller.dart';
 
-class AiChatbotScreen extends StatelessWidget {
-  const AiChatbotScreen({super.key});
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final AiChatBotController controller = Get.put(AiChatBotController());
+    return GetMaterialApp(
+      title: 'AI ChatBot',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue, scaffoldBackgroundColor: const Color(0xFF0F0F1E), useMaterial3: true),
+      home: const ChatScreen(),
+    );
+  }
+}
+
+// Message Model
+class Message {
+  final String text;
+  final bool isUser;
+  final DateTime timestamp;
+
+  Message({required this.text, required this.isUser, required this.timestamp});
+}
+
+// Chat Controller
+class ChatController extends GetxController {
+  final messages = <Message>[].obs;
+  final isTyping = false.obs;
+  final textController = TextEditingController();
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Welcome message
+    messages.add(Message(text: "Hi! I'm your AI assistant. How can I help you today?", isUser: false, timestamp: DateTime.now()));
+  }
+
+  void sendMessage(String text) {
+    if (text.trim().isEmpty) return;
+
+    // Add user message
+    messages.add(Message(text: text, isUser: true, timestamp: DateTime.now()));
+
+    textController.clear();
+
+    // Simulate bot typing
+    isTyping.value = true;
+
+    // Simulate bot response
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      isTyping.value = false;
+      messages.add(Message(text: _generateResponse(text), isUser: false, timestamp: DateTime.now()));
+    });
+  }
+
+  String _generateResponse(String userMessage) {
+    final lower = userMessage.toLowerCase();
+
+    if (lower.contains('hello') || lower.contains('hi')) {
+      return "Hello! How are you doing today?";
+    } else if (lower.contains('how are you')) {
+      return "I'm doing great, thank you for asking! How can I assist you?";
+    } else if (lower.contains('help')) {
+      return "I'm here to help! You can ask me questions, have a conversation, or just chat about anything you'd like.";
+    } else if (lower.contains('bye')) {
+      return "Goodbye! Have a wonderful day! Feel free to come back anytime.";
+    } else {
+      return "That's interesting! Tell me more about that, or feel free to ask me anything else.";
+    }
+  }
+
+  @override
+  void onClose() {
+    textController.dispose();
+    super.onClose();
+  }
+}
+
+// Chat Screen
+class ChatScreen extends StatelessWidget {
+  const ChatScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final ChatController controller = Get.put(ChatController());
     final ScrollController scrollController = ScrollController();
 
     // Auto scroll to bottom when new message arrives
@@ -30,12 +110,12 @@ class AiChatbotScreen extends StatelessWidget {
           ),
         ),
         child: SafeArea(
-          child: Obx(
-            () => Column(
-              children: [
-                _buildHeader(),
-                Expanded(
-                  child: ListView.builder(
+          child: Column(
+            children: [
+              _buildHeader(),
+              Expanded(
+                child: Obx(
+                  () => ListView.builder(
                     controller: scrollController,
                     padding: const EdgeInsets.all(16),
                     itemCount: controller.messages.length,
@@ -44,10 +124,10 @@ class AiChatbotScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                controller.isTyping.value ? _buildTypingIndicator() : const SizedBox.shrink(),
-                _buildInputArea(controller),
-              ],
-            ),
+              ),
+              Obx(() => controller.isTyping.value ? _buildTypingIndicator() : const SizedBox.shrink()),
+              _buildInputArea(controller),
+            ],
           ),
         ),
       ),
@@ -77,22 +157,22 @@ class AiChatbotScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'AI Assistant By Mansoor',
+                'AI Assistant',
                 style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Row(
                 children: [
                   Container(
-                    width: 10,
-                    height: 10,
+                    width: 8,
+                    height: 8,
                     decoration: BoxDecoration(
-                      color: AiChatBotController.to.isOnline.value ? Colors.greenAccent : Colors.red,
-                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.greenAccent,
+                      borderRadius: BorderRadius.circular(4),
                       boxShadow: [BoxShadow(color: Colors.greenAccent.withOpacity(0.5), blurRadius: 8)],
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text(AiChatBotController.to.isOnline.value ? 'Online' : "Offline", style: TextStyle(color: Colors.grey.shade400, fontSize: 14)),
+                  Text('Online', style: TextStyle(color: Colors.grey.shade400, fontSize: 14)),
                 ],
               ),
             ],
@@ -136,7 +216,7 @@ class AiChatbotScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: message.isUser
                       ? LinearGradient(colors: [Colors.blue.shade600, Colors.blue.shade400])
-                      : const LinearGradient(colors: [Color(0xFF1E1E2E), Color(0xFF252535)]),
+                      : LinearGradient(colors: [const Color(0xFF1E1E2E), const Color(0xFF252535)]),
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -185,15 +265,34 @@ class AiChatbotScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               border: Border.all(color: Colors.white.withOpacity(0.1), width: 1),
             ),
-            child: SpinKitThreeBounce(color: Colors.white, size: 20),
-            //Row(children: [_buildDot(0), const SizedBox(width: 6), _buildDot(1), const SizedBox(width: 6), _buildDot(2)]),
+            child: Row(children: [_buildDot(0), const SizedBox(width: 6), _buildDot(1), const SizedBox(width: 6), _buildDot(2)]),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildInputArea(AiChatBotController controller) {
+  Widget _buildDot(int index) {
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0.0, end: 1.0),
+      duration: const Duration(milliseconds: 600),
+      curve: Curves.easeInOut,
+      builder: (context, value, child) {
+        final delay = index * 0.2;
+        final animValue = ((value + delay) % 1.0);
+        return Transform.translate(
+          offset: Offset(0, -6 * (1 - (animValue * 2 - 1).abs())),
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(color: Colors.grey.shade400, borderRadius: BorderRadius.circular(4)),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildInputArea(ChatController controller) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -243,6 +342,5 @@ class AiChatbotScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
+    );  }
 }

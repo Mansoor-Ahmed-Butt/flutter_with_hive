@@ -3,6 +3,12 @@
 <plist version="1.0">
 	<dict>
 	    <key>NSCameraUsageDescription</key>
+        <string>This app requires camera access to capture images for text recognition.</string>
+        <key>NSPhotoLibraryUsageDescription</key>
+        <string>This app requires photo library access to pick images.</string>
+		<key>NSMicrophoneUsageDescription</key>
+        <string>We need access to your microphone to record videos with sound.</string>
+	    <key>NSCameraUsageDescription</key>
         <string>Scan your card to add it automatically</string>
         <key>NSCameraUsageDescription</key>
         <string>To scan cards</string>
