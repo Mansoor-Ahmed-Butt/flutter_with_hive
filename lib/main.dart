@@ -20,7 +20,6 @@ void main() async {
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Future.delayed(const Duration(milliseconds: 200));
-  int j=0;
   Stripe.publishableKey = "pk_test_51SIQ7T2ZnDzySriKV8vzDIRaLmNuDMpmreUQtq4TLskThdHh5qZQLxe8zWcPbHwl5eQgyw6ZYvxairkcF828wCFB00bttC5U6L";
   runApp(GlobalLoaderOverlay(child: MyApp()));
 
