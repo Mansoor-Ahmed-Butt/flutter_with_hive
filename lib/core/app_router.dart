@@ -6,6 +6,7 @@ import 'package:flutter_with_hive/view/user_testing/user_screen.dart';
 import 'package:flutter_with_hive/widgets/navigation_custom/bottom_navigation_bar.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_with_hive/view/voice_vapi/vapi_voice_real_time.dart';
 
 class RouteConfig {
   //Signup
@@ -16,12 +17,14 @@ class RouteConfig {
   static const String aiChatBotScreen = "/aiChatBotScreen";
   static const String userScreen = "/userScreen";
   static const String bottomNavigation = "/bottomNavigation";
+    static const String vapiChatScreen = "/vapiChatScreen";
 
   static GoRouter routes = GoRouter(
     initialLocation: "/",
     navigatorKey: Get.key,
     routes: [
-      GoRoute(path: '/', builder: (context, state) => MainScreen()),
+       GoRoute(path: '/', builder: (context, state) => VapiChatScreen()),
+      //GoRoute(path: '/', builder: (context, state) => MainScreen()),
       // GoRoute(path: '/', builder: (context, state) => UserScreen()),
       // GoRoute(path: '/', builder: (context, state) => AiChatbotScreen()),
       // GoRoute(path: '/', builder: (context, state) => AdsImplementationScreen()),
@@ -34,6 +37,15 @@ class RouteConfig {
         builder: (context, state) {
           // print("This is state $state \n This is context ${Get.key}");
           return OnboardingScreen();
+        },
+      ),
+       GoRoute(
+        path: '/vapiChatScreen',
+        name: vapiChatScreen,
+      
+        builder: (context, state) {
+        
+          return VapiChatScreen();
         },
       ),
       GoRoute(
