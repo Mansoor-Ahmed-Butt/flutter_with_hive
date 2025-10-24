@@ -98,7 +98,6 @@ flutter:
   assets:
     - assets/images/
     - assets/lottie/
-    - assets/icons/
     - assets/html/
 
     # - images/a_dot_ham.jpeg
@@ -136,6 +135,10 @@ flutter_launcher_icons:
   adaptive_icon_background: "#ffffff" # optional for Android adaptive icons
   adaptive_icon_foreground: "assets/images/app_logo.png"
   remove_alpha_ios: true
+
+  analyzer:
+  errors:
+    deprecated_member_use: ignore
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
