@@ -41,7 +41,7 @@ jobs:
 
       # Upload Android artifacts
       - name: Upload Android APKs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-builds
           path: |
@@ -52,7 +52,7 @@ jobs:
 
       # Upload Web artifacts
       - name: Upload Web
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: web-build
           path: build/web
@@ -79,7 +79,7 @@ jobs:
 
       # Upload iOS artifacts
       - name: Upload iOS Build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ios-build
           path: build/ios/iphoneos
@@ -106,7 +106,7 @@ jobs:
 
       # Upload macOS artifacts
       - name: Upload macOS Build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: macos-build
           path: build/macos/Build/Products/Release
@@ -133,7 +133,7 @@ jobs:
 
       # Upload Windows artifacts
       - name: Upload Windows Build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-build
           path: build/windows/x64/runner/Release
@@ -165,7 +165,7 @@ jobs:
 
       # Upload Linux artifacts
       - name: Upload Linux Build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-build
           path: build/linux/x64/release/bundle
