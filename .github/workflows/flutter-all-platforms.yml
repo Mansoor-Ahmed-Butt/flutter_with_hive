@@ -58,58 +58,58 @@ jobs:
           path: build/web
 
   # iOS Build (requires macOS)
-  build-ios:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.35.4"
-          channel: "stable"
-          cache: true
+  # build-ios:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         flutter-version: "3.35.4"
+  #         channel: "stable"
+  #         cache: true
 
-      - name: Install dependencies
-        run: flutter pub get
+  #     - name: Install dependencies
+  #       run: flutter pub get
 
-      # iOS Build
-      - name: Build iOS
-        run: |
-          flutter config --enable-ios
-          flutter build ios --release --no-codesign
+  #     # iOS Build
+  #     - name: Build iOS
+  #       run: |
+  #         flutter config --enable-ios
+  #         flutter build ios --release --no-codesign
 
-      # Upload iOS artifacts
-      - name: Upload iOS Build
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-build
-          path: build/ios/iphoneos
+  #     # Upload iOS artifacts
+  #     - name: Upload iOS Build
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ios-build
+  #         path: build/ios/iphoneos
 
-  # macOS Build
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.35.4"
-          channel: "stable"
-          cache: true
+  # # macOS Build
+  # build-macos:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         flutter-version: "3.35.4"
+  #         channel: "stable"
+  #         cache: true
 
-      - name: Install dependencies
-        run: flutter pub get
+  #     - name: Install dependencies
+  #       run: flutter pub get
 
-      # macOS Build
-      - name: Build macOS
-        run: |
-          flutter config --enable-macos-desktop
-          flutter build macos --release
+  #     # macOS Build
+  #     - name: Build macOS
+  #       run: |
+  #         flutter config --enable-macos-desktop
+  #         flutter build macos --release
 
-      # Upload macOS artifacts
-      - name: Upload macOS Build
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos-build
-          path: build/macos/Build/Products/Release
+  #     # Upload macOS artifacts
+  #     - name: Upload macOS Build
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: macos-build
+  #         path: build/macos/Build/Products/Release
 
   # Windows Build
   build-windows:
