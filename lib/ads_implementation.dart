@@ -21,7 +21,7 @@ class _AdsImplementationScreenState extends State<AdsImplementationScreen> {
   final controller = Get.put(AdsImplementController());
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
+ 
     final screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
