@@ -6,16 +6,15 @@ class VapiChatScreen extends StatelessWidget {
   VapiChatScreen({super.key});
 
   final VapiVoiceController controller = Get.put(VapiVoiceController());
-   
 
-    // Auto scroll to bottom when new message arrives
-   
+  // Auto scroll to bottom when new message arrives
+
   // No local animation controller used in the refactored GetX screen.
 
   @override
   Widget build(BuildContext context) {
     final ScrollController scrollController = ScrollController();
-     ever(controller.messages, (_) {
+    ever(controller.messages, (_) {
       Future.delayed(const Duration(milliseconds: 100), () {
         if (scrollController.hasClients) {
           scrollController.animateTo(scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
@@ -55,7 +54,7 @@ class VapiChatScreen extends StatelessWidget {
               }
 
               return ListView.builder(
-                 controller: scrollController,
+                controller: scrollController,
                 padding: const EdgeInsets.all(16),
                 itemCount: msgs.length,
                 itemBuilder: (context, index) {
