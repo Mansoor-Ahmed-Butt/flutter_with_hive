@@ -36,7 +36,7 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
               getByName("release") {
-        signingConfig signingConfigs.release
+        
         isMinifyEnabled = false
         isShrinkResources = false
         proguardFiles(
