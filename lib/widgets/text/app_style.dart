@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_with_hive/core/themes.dart';
 
-
-
 class AppStyle {
   // Font Styles
 
   static TextStyle style9w600({Color? color = AppColors.titleColor}) {
     return TextStyle(color: color, fontSize: 9, fontFamily: 'Montserrat', fontWeight: FontWeight.w600);
+  }
+   static TextStyle style17w700({Color? color = AppColors.titleColor}) {
+    return TextStyle(color: color, fontSize: 17, fontFamily: 'Montserrat', fontWeight: FontWeight.w700);
+  }
+    static TextStyle style17w600({Color? color = AppColors.titleColor}) {
+    return TextStyle(color: color, fontSize: 17, fontFamily: 'Montserrat', fontWeight: FontWeight.w600);
+  }
+   static TextStyle style20w700({Color? color = AppColors.titleColor}) {
+    return TextStyle(color: color, fontSize: 20, fontFamily: 'Montserrat', fontWeight: FontWeight.w700);
   }
 
   static TextStyle style9w400({Color? color = AppColors.titleColor}) {
@@ -21,6 +28,7 @@ class AppStyle {
   static TextStyle style32w600({Color? color = AppColors.titleColor}) {
     return TextStyle(color: color, fontSize: 32, fontFamily: 'Montserrat', fontWeight: FontWeight.w600);
   }
+
   static TextStyle style50w600({Color? color = AppColors.titleColor}) {
     return TextStyle(color: color, fontSize: 50, fontFamily: 'Montserrat', fontWeight: FontWeight.w600);
   }
@@ -71,11 +79,7 @@ class AppStyle {
     );
   }
 
-  static TextStyle style12w600({
-    Color? color = AppColors.titleColor,
-    bool isUnderLine = false,
-    String? fontFamily = "Montserrat",
-  }) {
+  static TextStyle style12w600({Color? color = AppColors.titleColor, bool isUnderLine = false, String? fontFamily = "Montserrat"}) {
     return TextStyle(
       color: color,
       fontSize: 12,
@@ -100,13 +104,7 @@ class AppStyle {
   }
 
   static TextStyle style11w600({Color? color = AppColors.titleColor}) {
-    return TextStyle(
-      color: color,
-      fontSize: 11,
-      fontFamily: 'Montserrat',
-      fontWeight: FontWeight.w600,
-      height: 13.41 / 11,
-    );
+    return TextStyle(color: color, fontSize: 11, fontFamily: 'Montserrat', fontWeight: FontWeight.w600, height: 13.41 / 11);
   }
 
   static TextStyle style11w700({Color? color = AppColors.titleColor}) {
@@ -208,6 +206,7 @@ class AppStyle {
   static TextStyle style15w500({Color color = AppColors.titleColor}) {
     return TextStyle(color: color, fontSize: 15, fontFamily: 'Montserrat', fontWeight: FontWeight.w500);
   }
+
   static TextStyle style15w400({Color color = AppColors.titleColor}) {
     return TextStyle(color: color, fontSize: 15, fontFamily: 'Montserrat', fontWeight: FontWeight.w400);
   }
@@ -236,11 +235,22 @@ class AppStyle {
     return TextStyle(color: color, fontSize: 18, fontFamily: 'Montserrat', fontWeight: FontWeight.w700);
   }
 
+  static TextStyle style18w500({Color color = AppColors.titleColor}) {
+    return TextStyle(color: color, fontSize: 18, fontFamily: 'Montserrat', fontWeight: FontWeight.w500);
+  }
+
   static TextStyle style24w700({Color color = AppColors.titleColor}) {
     return TextStyle(color: color, fontSize: 24, fontFamily: 'Montserrat', fontWeight: FontWeight.w700);
   }
 
   static TextStyle style30w700({Color color = AppColors.titleColor}) {
     return TextStyle(color: color, fontSize: 30, fontFamily: 'Montserrat', fontWeight: FontWeight.w700);
+  }
+
+  static TextStyle style32w700({Color color = AppColors.titleColor}) {
+    return TextStyle(color: color, fontSize: 32, fontFamily: 'Montserrat', fontWeight: FontWeight.w700);
+  }
+   static TextStyle style28w700({Color color = AppColors.titleColor}) {
+    return TextStyle(color: color, fontSize: 28, fontFamily: 'Montserrat', fontWeight: FontWeight.w700);
   }
 }

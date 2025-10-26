@@ -1,5 +1,7 @@
 import 'package:flutter_with_hive/view/ads_display/ads_implementation.dart';
 import 'package:flutter_with_hive/view/ai_chat_bot/chat_screen.dart';
+import 'package:flutter_with_hive/view/home_page/main_home_screen.dart';
+import 'package:flutter_with_hive/view/onB/onboarding_testing.dart';
 import 'package:flutter_with_hive/view/onboarding/view/onboarding_screen.dart';
 import 'package:flutter_with_hive/view/log_in/view/log_in.dart';
 import 'package:flutter_with_hive/view/user_testing/user_screen.dart';
@@ -17,13 +19,17 @@ class RouteConfig {
   static const String aiChatBotScreen = "/aiChatBotScreen";
   static const String userScreen = "/userScreen";
   static const String bottomNavigation = "/bottomNavigation";
-    static const String vapiChatScreen = "/vapiChatScreen";
+  static const String vapiChatScreen = "/vapiChatScreen";
+  static const String adCv = "/adCv";
+  static const String animatedHomeScreen = "/animatedHomeScreen";
 
   static GoRouter routes = GoRouter(
     initialLocation: "/",
     navigatorKey: Get.key,
     routes: [
-       GoRoute(path: '/', builder: (context, state) => VapiChatScreen()),
+      // GoRoute(path: '/', builder: (context, state) => MainScreen12()),
+       GoRoute(path: '/', builder: (context, state) => OnboardingScreen1()),
+      // GoRoute(path: '/', builder: (context, state) => VapiChatScreen()),
       //GoRoute(path: '/', builder: (context, state) => MainScreen()),
       // GoRoute(path: '/', builder: (context, state) => UserScreen()),
       // GoRoute(path: '/', builder: (context, state) => AiChatbotScreen()),
@@ -39,13 +45,28 @@ class RouteConfig {
           return OnboardingScreen();
         },
       ),
-       GoRoute(
+      GoRoute(
         path: '/vapiChatScreen',
         name: vapiChatScreen,
-      
+
         builder: (context, state) {
-        
           return VapiChatScreen();
+        },
+      ),
+      GoRoute(
+        path: '/adCv',
+        name: adCv,
+
+        builder: (context, state) {
+          return OnboardingScreen1();
+        },
+      ),
+      GoRoute(
+        path: '/animatedHomeScreen',
+        name: animatedHomeScreen,
+
+        builder: (context, state) {
+          return MainScreen12();
         },
       ),
       GoRoute(

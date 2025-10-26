@@ -119,7 +119,7 @@ class CustomButton extends StatelessWidget {
                             // backgroundColor: const Color.fromARGB(255, 0, 0, 0),
                             textStyle: textStyle ?? const TextStyle(color: Colors.white),
                             // position: TooltipPosition.bottom,
-                            child: Icon(icon, color: ic ?? (isOnDark ? AppColors.whiteColor : AppColors.bodyTextDark), size: 16),
+                            child: Icon(icon, color: ic ?? (isOnDark ? AppColors.whiteColor : AppColors.bodyTextDark), size: 18),
                           )
                         : Tooltip(
                             message: btnText != "" ? btnText : "",
@@ -147,7 +147,7 @@ class CustomButton extends StatelessWidget {
                 if (!isIconLeft)
                   if (icon != null || svgPath != null)
                     (icon != null)
-                        ? Icon(icon, color: ic ?? (isOnDark ? AppColors.whiteColor : AppColors.bodyTextDark), size: 16)
+                        ? Icon(icon, color: ic ?? (isOnDark ? AppColors.whiteColor : AppColors.bodyTextDark), size: 18)
                         : SvgPicture.asset(
                             svgPath ?? "",
                             width: 14,
