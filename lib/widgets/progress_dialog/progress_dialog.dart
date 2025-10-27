@@ -16,13 +16,13 @@ class ProgressDialogCustom {
         context.loaderOverlay.show(
           widgetBuilder: (progress) => Stack(
             children: [
-              Container(color: Colors.black.withOpacity(0.4)),
+              Container(color: Colors.black.withValues(alpha: 0.4)),
               Center(
                 child: Container(
                   height: 120.0,
                   width: 120.0,
                   padding: EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(color: AppColors.activityColor.withOpacity(0.75), borderRadius: BorderRadius.circular(15.0)),
+                  decoration: BoxDecoration(color: AppColors.activityColor.withValues(alpha: 0.75), borderRadius: BorderRadius.circular(15.0)),
                   child: _imageWidget(AppAssets.logo),
                 ),
               ),
@@ -34,7 +34,7 @@ class ProgressDialogCustom {
         _fallbackDialogShown = true;
         showDialog<void>(
           context: context,
-          barrierColor: Colors.black.withOpacity(0.4),
+          barrierColor: Colors.black.withValues(alpha: 0.4),
           barrierDismissible: false,
           useRootNavigator: true,
           builder: (ctx) => Center(
@@ -42,7 +42,7 @@ class ProgressDialogCustom {
               height: 120.0,
               width: 120.0,
               padding: EdgeInsets.all(16.0),
-              decoration: BoxDecoration(color: AppColors.activityColor.withOpacity(0.75), borderRadius: BorderRadius.circular(15.0)),
+              decoration: BoxDecoration(color: AppColors.activityColor.withValues(alpha: 0.75), borderRadius: BorderRadius.circular(15.0)),
               child: _imageWidget(AppAssets.logo),
             ),
           ),

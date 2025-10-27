@@ -94,9 +94,9 @@ class VapiChatScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                     margin: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      color: Colors.deepPurple.withOpacity(0.1),
+                      color: Colors.deepPurple.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.deepPurple.withOpacity(0.3)),
+                      border: Border.all(color: Colors.deepPurple.withValues(alpha: 0.3)),
                     ),
                     child: Row(
                       children: [
@@ -123,7 +123,7 @@ class VapiChatScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: const Color(0xFF1A1A2E),
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, -5))],
+              boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, -5))],
             ),
             child: SafeArea(
               top: false,
@@ -150,7 +150,7 @@ class VapiChatScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             BoxShadow(
-                              color: (listening ? Colors.red : Colors.deepPurple).withOpacity(0.4),
+                              color: (listening ? Colors.red : Colors.deepPurple).withValues(alpha: 0.4),
                               blurRadius: 12,
                               offset: const Offset(0, 4),
                             ),
@@ -168,7 +168,7 @@ class VapiChatScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: const Color(0xFF2D2D3E),
                         borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: Colors.white.withOpacity(0.1)),
+                        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
                       ),
                       child: TextField(
                         controller: controller.inputController,
@@ -204,7 +204,7 @@ class VapiChatScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(colors: [Colors.deepPurple, Colors.deepPurple.shade700]),
                         borderRadius: BorderRadius.circular(12),
-                        boxShadow: [BoxShadow(color: Colors.deepPurple.withOpacity(0.4), blurRadius: 12, offset: const Offset(0, 4))],
+                        boxShadow: [BoxShadow(color: Colors.deepPurple.withValues(alpha: 0.4), blurRadius: 12, offset: const Offset(0, 4))],
                       ),
                       child: const Icon(Icons.send_rounded, color: Colors.white, size: 24),
                     ),
@@ -240,7 +240,9 @@ class VapiChatScreen extends StatelessWidget {
                 ? LinearGradient(colors: [Colors.deepPurple, Colors.deepPurple.shade700])
                 : const LinearGradient(colors: [Color(0xFF2D2D3E), Color(0xFF3A3A4E)]),
             borderRadius: BorderRadius.circular(16),
-            boxShadow: [BoxShadow(color: (isUser ? Colors.deepPurple : Colors.black).withOpacity(0.3), blurRadius: 8, offset: const Offset(0, 2))],
+            boxShadow: [
+              BoxShadow(color: (isUser ? Colors.deepPurple : Colors.black).withValues(alpha: 0.3), blurRadius: 8, offset: const Offset(0, 2)),
+            ],
           ),
           child: Text(msg['text']!, style: const TextStyle(color: Colors.white, fontSize: 15, height: 1.4)),
         ),

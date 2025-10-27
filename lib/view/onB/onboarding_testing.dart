@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_with_hive/core/themes.dart';
 import 'package:flutter_with_hive/view/onB/on_boarding_model.dart';
 import 'package:flutter_with_hive/view/onB/on_controller.dart';
+import 'package:flutter_with_hive/widgets/animated_back_ground_circle_widget.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:math' as math;
@@ -38,59 +41,40 @@ class _OnboardingScreen1State extends State<OnboardingScreen1> with TickerProvid
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF0A0E27), Color(0xFF1A1F3A), Color(0xFF2D1B69)],
+            colors: [AppColors.homeBackgroundColor1, AppColors.homeBackgroundColor2, AppColors.homeBackgroundColor3],
           ),
         ),
         child: Stack(
           children: [
             // Animated Background Circles
-            AnimatedBuilder(
-              animation: _rotationController,
-              builder: (context, child) {
-                return Positioned(
-                  top: -100,
-                  right: -100,
-                  child: Transform.rotate(
-                    angle: _rotationController.value * 2 * math.pi,
-                    child: Container(
-                      width: 300,
-                      height: 300,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: RadialGradient(colors: [const Color(0xFF6366F1).withOpacity(0.15), Colors.transparent]),
-                      ),
-                    ),
-                  ),
-                );
-              },
+            CustomBgAnimatedWidget(
+              rotationController: _rotationController,
+              top: -100,
+              right: -100,
+              width: 300.w,
+              height: 300.h,
+              color: AppColors.appBlue,
+              opacity: 0.15,
+              clockwise: true,
             ),
-            AnimatedBuilder(
-              animation: _rotationController,
-              builder: (context, child) {
-                return Positioned(
-                  bottom: -150,
-                  left: -100,
-                  child: Transform.rotate(
-                    angle: -_rotationController.value * 2 * math.pi,
-                    child: Container(
-                      width: 400,
-                      height: 400,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: RadialGradient(colors: [const Color(0xFFEC4899).withOpacity(0.1), Colors.transparent]),
-                      ),
-                    ),
-                  ),
-                );
-              },
+            CustomBgAnimatedWidget(
+              rotationController: _rotationController,
+              top: -150,
+              right: -100,
+              width: 400.w,
+              height: 400.h,
+              color: AppColors.appPink,
+              opacity: 0.1,
+              clockwise: true,
             ),
+           
 
             SafeArea(
               child: Column(
                 children: [
                   // Skip Button
                   Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding:  EdgeInsets.all(20.r),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -105,7 +89,7 @@ class _OnboardingScreen1State extends State<OnboardingScreen1> with TickerProvid
                           () => controller.currentPage.value < 2
                               ? TextButton(
                                   onPressed: controller.skipToEnd,
-                                  style: TextButton.styleFrom(foregroundColor: Colors.white.withOpacity(0.7)),
+                                  style: TextButton.styleFrom(foregroundColor: Colors.white.withValues(alpha: 0.7)),
                                   child: const Text('Skip', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                                 )
                               : const SizedBox.shrink(),
@@ -156,7 +140,7 @@ class _OnboardingScreen1State extends State<OnboardingScreen1> with TickerProvid
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(
-                                  color: controller.pages[controller.currentPage.value].accentColor.withOpacity(0.4),
+                                  color: controller.pages[controller.currentPage.value].accentColor.withValues(alpha: 0.4),
                                   blurRadius: 20,
                                   offset: const Offset(0, 10),
                                 ),
@@ -207,7 +191,7 @@ class _OnboardingScreen1State extends State<OnboardingScreen1> with TickerProvid
             width: 320,
             height: 320,
             decoration: BoxDecoration(
-              gradient: RadialGradient(colors: [data.accentColor.withOpacity(0.2), Colors.transparent]),
+              gradient: RadialGradient(colors: [data.accentColor.withValues(alpha: 0.2), Colors.transparent]),
               shape: BoxShape.circle,
             ),
             child: Lottie.network(
@@ -239,7 +223,7 @@ class _OnboardingScreen1State extends State<OnboardingScreen1> with TickerProvid
           Text(
             data.description,
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 16, height: 1.6),
+            style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 16, height: 1.6),
           ),
         ],
       ),
@@ -255,9 +239,9 @@ class _OnboardingScreen1State extends State<OnboardingScreen1> with TickerProvid
       height: 8,
       width: isActive ? 32 : 8,
       decoration: BoxDecoration(
-        color: isActive ? color : Colors.white.withOpacity(0.3),
+        color: isActive ? color : Colors.white.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(4),
-        boxShadow: isActive ? [BoxShadow(color: color.withOpacity(0.5), blurRadius: 8, spreadRadius: 1)] : null,
+        boxShadow: isActive ? [BoxShadow(color: color.withValues(alpha: 0.5), blurRadius: 8, spreadRadius: 1)] : null,
       ),
     );
   }
@@ -292,7 +276,7 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 15),
-              Text('You\'re all set to create amazing resumes', style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 16)),
+              Text('You\'re all set to create amazing resumes', style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 16)),
               const SizedBox(height: 50),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30),
@@ -301,7 +285,7 @@ class HomeScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)]),
                   borderRadius: BorderRadius.circular(20),
-                  boxShadow: [BoxShadow(color: const Color(0xFF6366F1).withOpacity(0.4), blurRadius: 20, offset: const Offset(0, 10))],
+                  boxShadow: [BoxShadow(color: const Color(0xFF6366F1).withValues(alpha: 0.4), blurRadius: 20, offset: const Offset(0, 10))],
                 ),
                 child: Material(
                   color: Colors.transparent,

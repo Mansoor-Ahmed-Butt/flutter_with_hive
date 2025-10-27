@@ -34,6 +34,9 @@ class AppColors {
 
 
 
+
+
+
   static const appBlue = Color(0xFF6366F1);
   static const appPurple = Color(0xFF8B5CF6);
   static const appPink = Color(0xFFEC4899);

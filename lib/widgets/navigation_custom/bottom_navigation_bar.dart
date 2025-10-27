@@ -26,7 +26,7 @@ class CustomBottomNavBar extends StatelessWidget {
       height: 70,
       decoration: BoxDecoration(
         color: backgroundColor,
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 20, offset: const Offset(0, -5))],
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, -5))],
       ),
       child: SafeArea(
         top: false,
@@ -46,7 +46,10 @@ class CustomBottomNavBar extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(color: isSelected ? selectedColor.withOpacity(0.15) : Colors.transparent, borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(
+          color: isSelected ? selectedColor.withValues(alpha: 0.15) : Colors.transparent,
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -55,9 +58,9 @@ class CustomBottomNavBar extends StatelessWidget {
               curve: Curves.easeInOut,
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                gradient: isSelected ? LinearGradient(colors: [selectedColor, selectedColor.withOpacity(0.7)]) : null,
+                gradient: isSelected ? LinearGradient(colors: [selectedColor, selectedColor.withValues(alpha: 0.7)]) : null,
                 borderRadius: BorderRadius.circular(12),
-                boxShadow: isSelected ? [BoxShadow(color: selectedColor.withOpacity(0.4), blurRadius: 12, offset: const Offset(0, 4))] : null,
+                boxShadow: isSelected ? [BoxShadow(color: selectedColor.withValues(alpha: 0.4), blurRadius: 12, offset: const Offset(0, 4))] : null,
               ),
               child: Icon(item.icon, color: isSelected ? Colors.white : unselectedColor, size: 24),
             ),
@@ -113,7 +116,7 @@ class FloatingBottomNavBar extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(30),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 20, offset: const Offset(0, 10))],
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, 10))],
       ),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: List.generate(items.length, (index) => _buildNavItem(index))),
     );
@@ -143,11 +146,22 @@ class FloatingBottomNavBar extends StatelessWidget {
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         gradient: value > 0
-                            ? LinearGradient(colors: [selectedColor.withOpacity(value), selectedColor.withOpacity(value * 0.7)])
+                            ? LinearGradient(
+                                colors: [
+                                  selectedColor.withValues(alpha: value),
+                                  selectedColor.withValues(alpha: value * 0.7),
+                                ],
+                              )
                             : null,
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: value > 0
-                            ? [BoxShadow(color: selectedColor.withOpacity(0.4 * value), blurRadius: 12 * value, offset: Offset(0, 4 * value))]
+                            ? [
+                                BoxShadow(
+                                  color: selectedColor.withValues(alpha: 0.4 * value),
+                                  blurRadius: 12 * value,
+                                  offset: Offset(0, 4 * value),
+                                ),
+                              ]
                             : null,
                       ),
                       child: Icon(item.icon, color: Color.lerp(unselectedColor, Colors.white, value), size: 24),
@@ -198,7 +212,7 @@ class MinimalBottomNavBar extends StatelessWidget {
       height: 65,
       decoration: BoxDecoration(
         color: backgroundColor,
-        border: Border(top: BorderSide(color: Colors.white.withOpacity(0.1), width: 1)),
+        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1)),
       ),
       child: SafeArea(
         top: false,

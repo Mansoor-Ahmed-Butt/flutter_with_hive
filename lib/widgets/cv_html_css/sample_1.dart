@@ -138,8 +138,8 @@ class ChatScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [Colors.blue.shade600.withOpacity(0.2), Colors.purple.shade600.withOpacity(0.2)]),
-        border: Border(bottom: BorderSide(color: Colors.white.withOpacity(0.1), width: 1)),
+        gradient: LinearGradient(colors: [Colors.blue.shade600.withValues(alpha: 0.2), Colors.purple.shade600.withValues(alpha: 0.2)]),
+        border: Border(bottom: BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1)),
       ),
       child: Row(
         children: [
@@ -148,7 +148,7 @@ class ChatScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(colors: [Colors.blue.shade400, Colors.purple.shade400]),
               borderRadius: BorderRadius.circular(16),
-              boxShadow: [BoxShadow(color: Colors.blue.withOpacity(0.3), blurRadius: 12, offset: const Offset(0, 4))],
+              boxShadow: [BoxShadow(color: Colors.blue.withValues(alpha: 0.3), blurRadius: 12, offset: const Offset(0, 4))],
             ),
             child: const Icon(Icons.smart_toy_rounded, color: Colors.white, size: 28),
           ),
@@ -168,7 +168,7 @@ class ChatScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.greenAccent,
                       borderRadius: BorderRadius.circular(4),
-                      boxShadow: [BoxShadow(color: Colors.greenAccent.withOpacity(0.5), blurRadius: 8)],
+                      boxShadow: [BoxShadow(color: Colors.greenAccent.withValues(alpha: 0.5), blurRadius: 8)],
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -220,12 +220,12 @@ class ChatScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: message.isUser ? Colors.blue.withOpacity(0.3) : Colors.black.withOpacity(0.2),
+                      color: message.isUser ? Colors.blue.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.2),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
                   ],
-                  border: Border.all(color: message.isUser ? Colors.blue.withOpacity(0.3) : Colors.white.withOpacity(0.1), width: 1),
+                  border: Border.all(color: message.isUser ? Colors.blue.withValues(alpha: 0.3) : Colors.white.withValues(alpha: 0.1), width: 1),
                 ),
                 child: Text(message.text, style: const TextStyle(color: Colors.white, fontSize: 15, height: 1.4)),
               ),
@@ -263,7 +263,7 @@ class ChatScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: const LinearGradient(colors: [Color(0xFF1E1E2E), Color(0xFF252535)]),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.white.withOpacity(0.1), width: 1),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 1),
             ),
             child: Row(children: [_buildDot(0), const SizedBox(width: 6), _buildDot(1), const SizedBox(width: 6), _buildDot(2)]),
           ),
@@ -296,8 +296,8 @@ class ChatScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [Colors.blue.shade600.withOpacity(0.1), Colors.purple.shade600.withOpacity(0.1)]),
-        border: Border(top: BorderSide(color: Colors.white.withOpacity(0.1), width: 1)),
+        gradient: LinearGradient(colors: [Colors.blue.shade600.withValues(alpha: 0.1), Colors.purple.shade600.withValues(alpha: 0.1)]),
+        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1)),
       ),
       child: Row(
         children: [
@@ -306,7 +306,7 @@ class ChatScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(0xFF1E1E2E),
                 borderRadius: BorderRadius.circular(28),
-                border: Border.all(color: Colors.white.withOpacity(0.1), width: 1),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 1),
               ),
               child: TextField(
                 controller: controller.textController,
@@ -326,7 +326,7 @@ class ChatScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(colors: [Colors.blue.shade600, Colors.purple.shade600]),
               borderRadius: BorderRadius.circular(28),
-              boxShadow: [BoxShadow(color: Colors.blue.withOpacity(0.4), blurRadius: 12, offset: const Offset(0, 4))],
+              boxShadow: [BoxShadow(color: Colors.blue.withValues(alpha: 0.4), blurRadius: 12, offset: const Offset(0, 4))],
             ),
             child: Material(
               color: Colors.transparent,
@@ -342,5 +342,6 @@ class ChatScreen extends StatelessWidget {
           ),
         ],
       ),
-    );  }
+    );
+  }
 }

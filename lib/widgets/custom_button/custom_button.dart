@@ -92,16 +92,16 @@ class CustomButton extends StatelessWidget {
               ? BoxDecoration(
                   color: bg ?? (isOnDark ? Colors.transparent : AppColors.lightBackgroundColor),
                   border: isButtonInHeader
-                      ? Border.all(color: Colors.white.withOpacity(0.25))
-                      : Border(right: BorderSide(color: Colors.white.withOpacity(0.25))),
-                  // border: Border.all(color: Colors.white.withOpacity(0.5)),
+                      ? Border.all(color: Colors.white.withValues(alpha: 0.25))
+                      : Border(right: BorderSide(color: Colors.white.withValues(alpha: 0.25))),
+                  // border: Border.all(color: Colors.white.withValues(alpha:0.5)),
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(Branding.tFborderR), topLeft: Radius.circular(Branding.tFborderR)),
                 )
               : ShapeDecoration(
                   color: bg ?? (isOnDark ? Colors.transparent : AppColors.lightBackgroundColor),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(borderRadius ?? Branding.tFborderR),
-                    side: BorderSide(color: br ?? (isOnDark ? AppColors.whiteColor.withOpacity(0.25) : AppColors.borderColor)),
+                    side: BorderSide(color: br ?? (isOnDark ? AppColors.whiteColor.withValues(alpha: 0.25) : AppColors.borderColor)),
                   ),
                 ),
           child: Center(
