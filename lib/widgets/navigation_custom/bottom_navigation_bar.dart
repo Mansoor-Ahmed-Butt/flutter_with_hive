@@ -258,75 +258,7 @@ class MinimalBottomNavBar extends StatelessWidget {
   }
 }
 
-// Example Usage Screen
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
-
-  final List<Widget> _screens = [const HomeTab(), const SearchTab(), const FavoriteTab(), const ProfileTab()];
-
-  final List<BottomNavItem> _navItems = [
-    BottomNavItem(icon: Icons.home_rounded, label: 'Home'),
-    BottomNavItem(icon: Icons.search_rounded, label: 'Search'),
-    BottomNavItem(icon: Icons.favorite_rounded, label: 'Favorites'),
-    BottomNavItem(icon: Icons.person_rounded, label: 'Profile'),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF0F0F1E),
-      body: _screens[_currentIndex],
-
-      // Choose one of these styles:
-
-      // Style 1: Default Custom Style
-      // bottomNavigationBar: CustomBottomNavBar(
-      //   currentIndex: _currentIndex,
-      //   onTap: (index) => setState(() => _currentIndex = index),
-      //   items: _navItems,
-      //   selectedColor: const Color(0xFF4A90E2),
-      //   backgroundColor: const Color(0xFF1A1A2E),
-      // ),
-
-      //Style 2: Floating Style (Comment/Uncomment to switch)
-      bottomNavigationBar: FloatingBottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
-        items: _navItems,
-        selectedColor: const Color(0xFF4A90E2),
-        backgroundColor: const Color(0xFF1A1A2E),
-      ),
-
-      // Style 3: Minimal Style (Comment/Uncomment to switch)
-      // bottomNavigationBar: MinimalBottomNavBar(
-      //   currentIndex: _currentIndex,
-      //   onTap: (index) => setState(() => _currentIndex = index),
-      //   items: _navItems,
-      //   selectedColor: const Color(0xFF4A90E2),
-      //   backgroundColor: const Color(0xFF1A1A2E),
-      // ),
-    );
-  }
-}
-
-// Sample Tab Screens
-class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Home Screen', style: TextStyle(color: Colors.white, fontSize: 24)),
-    );
-  }
-}
 
 class SearchTab extends StatelessWidget {
   const SearchTab({super.key});

@@ -1,8 +1,7 @@
 import 'package:flutter_with_hive/view/ads_display/ads_implementation.dart';
 import 'package:flutter_with_hive/view/ai_chat_bot/chat_screen.dart';
 import 'package:flutter_with_hive/view/home_page/main_home_screen.dart';
-import 'package:flutter_with_hive/view/onB/onboarding_testing.dart';
-import 'package:flutter_with_hive/view/onboarding/view/onboarding_screen.dart';
+import 'package:flutter_with_hive/view/on_boarding/onboarding_screen.dart';
 import 'package:flutter_with_hive/view/log_in/view/log_in.dart';
 import 'package:flutter_with_hive/view/user_testing/user_screen.dart';
 import 'package:flutter_with_hive/widgets/navigation_custom/bottom_navigation_bar.dart';
@@ -20,15 +19,15 @@ class RouteConfig {
   static const String userScreen = "/userScreen";
   static const String bottomNavigation = "/bottomNavigation";
   static const String vapiChatScreen = "/vapiChatScreen";
-  static const String adCv = "/adCv";
-  static const String animatedHomeScreen = "/animatedHomeScreen";
+  static const String mainHomeScreen = "/mainHomeScreen";
 
   static GoRouter routes = GoRouter(
     initialLocation: "/",
     navigatorKey: Get.key,
     routes: [
-      // GoRoute(path: '/', builder: (context, state) => MainScreen12()),
-       GoRoute(path: '/', builder: (context, state) => OnboardingScreen1()),
+      // GoRoute(path: '/', builder: (context, state) => MainHomeScreen()),
+      GoRoute(path: '/', builder: (context, state) => OnboardingScreen()),
+
       // GoRoute(path: '/', builder: (context, state) => VapiChatScreen()),
       //GoRoute(path: '/', builder: (context, state) => MainScreen()),
       // GoRoute(path: '/', builder: (context, state) => UserScreen()),
@@ -36,15 +35,6 @@ class RouteConfig {
       // GoRoute(path: '/', builder: (context, state) => AdsImplementationScreen()),
       // GoRoute(path: '/', builder: (context, state) => StripTesting()),
       // GoRoute(path: '/', builder: (context, state) => OnboardingScreen()),
-      GoRoute(
-        path: '/onBoarding',
-        name: onboardingScreen,
-        //  builder: (context, state) => SignUp()
-        builder: (context, state) {
-          // print("This is state $state \n This is context ${Get.key}");
-          return OnboardingScreen();
-        },
-      ),
       GoRoute(
         path: '/vapiChatScreen',
         name: vapiChatScreen,
@@ -54,19 +44,19 @@ class RouteConfig {
         },
       ),
       GoRoute(
-        path: '/adCv',
-        name: adCv,
+        path: '/onboardingScreen',
+        name: onboardingScreen,
 
         builder: (context, state) {
-          return OnboardingScreen1();
+          return OnboardingScreen();
         },
       ),
       GoRoute(
-        path: '/animatedHomeScreen',
-        name: animatedHomeScreen,
+        path: '/mainHomeScreen',
+        name: mainHomeScreen,
 
         builder: (context, state) {
-          return MainScreen12();
+          return MainHomeScreen();
         },
       ),
       GoRoute(
@@ -76,13 +66,7 @@ class RouteConfig {
           return UserScreen();
         },
       ),
-      GoRoute(
-        path: '/bottomNavigation',
-        name: bottomNavigation,
-        builder: (context, state) {
-          return MainScreen();
-        },
-      ),
+     
       GoRoute(
         path: '/adsScreen',
         name: adsScreen,

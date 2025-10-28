@@ -4,20 +4,24 @@ import 'dart:math' as math;
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_with_hive/core/themes.dart';
+import 'package:flutter_with_hive/core/utils/dialog_helper.dart';
+import 'package:flutter_with_hive/core/utils/print_log.dart';
 import 'package:flutter_with_hive/widgets/custom_button/custom_button.dart';
 import 'package:flutter_with_hive/widgets/custom_icon_button.dart';
+import 'package:flutter_with_hive/widgets/popup_for_cv.dart';
+import 'package:flutter_with_hive/widgets/resume_dialog.dart';
 import 'package:flutter_with_hive/widgets/text/app_style.dart';
 
 // Animated Home Screen
 
-class AniHomeScreen extends StatefulWidget {
-  const AniHomeScreen({super.key});
+class AnimatedHomeScreen extends StatefulWidget {
+  const AnimatedHomeScreen({super.key});
 
   @override
-  State<AniHomeScreen> createState() => _AniHomeScreenState();
+  State<AnimatedHomeScreen> createState() => _AnimatedHomeScreenState();
 }
 
-class _AniHomeScreenState extends State<AniHomeScreen> with TickerProviderStateMixin {
+class _AnimatedHomeScreenState extends State<AnimatedHomeScreen> with TickerProviderStateMixin {
   late AnimationController _floatingController;
   late AnimationController _rotationController;
 
@@ -38,10 +42,7 @@ class _AniHomeScreenState extends State<AniHomeScreen> with TickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    return
-    
-    
-     Container(
+    return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -278,11 +279,46 @@ class _AniHomeScreenState extends State<AniHomeScreen> with TickerProviderStateM
                       crossAxisSpacing: 16,
                       childAspectRatio: 0.95,
                       children: [
-                        _buildFeatureCard(
-                          'AI Writer',
-                          'Smart content generation',
-                          Icons.auto_awesome_rounded,
-                          LinearGradient(colors: [AppColors.appBlue, AppColors.appPurple]),
+                        InkWell(
+                          // onTap: () {
+                          //   showDialog(
+                          //     context: context,
+                          //     barrierDismissible: false,
+                          //     barrierColor: Colors.transparent.withValues(alpha: 0.5),
+                          //     builder: (BuildContext context) {
+                          //       return const PremiumResumeDialog();
+                          //     },
+                          //   ).then((data) {
+                          //     if (data != null) {
+                          //       printLog('Resume Data: $data');
+                          //       // Handle the resume creation with the data
+                          //     }
+                          //   });
+                          // },
+                          // onTap: () {
+                          //   showCustomDialog(
+                          //     context: context,
+                          //     title: 'Delete Resume?',
+                          //     description: 'Are you sure you want to delete this resume? This action cannot be undone.',
+                          //     icon: Icons.warning_rounded,
+                          //     onConfirm: () {
+                          //       print('Resume deleted!');
+                          //     },
+                          //     onCancel: () {
+                          //       print('Cancelled');
+                          //     },
+                          //   );
+                          // },
+                          onTap: () {
+                            alertForResume(context,);
+                          },
+
+                          child: _buildFeatureCard(
+                            'AI Writer',
+                            'Smart content generation',
+                            Icons.auto_awesome_rounded,
+                            LinearGradient(colors: [AppColors.appBlue, AppColors.appPurple]),
+                          ),
                         ),
                         _buildFeatureCard(
                           'Export PDF',
@@ -344,8 +380,6 @@ class _AniHomeScreenState extends State<AniHomeScreen> with TickerProviderStateM
         ],
       ),
     );
-  
-  
   }
 
   Widget _buildStatCard(String value, String label, IconData icon, Color color) {

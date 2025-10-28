@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_with_hive/core/themes.dart';
+import 'package:flutter_with_hive/core/utils/print_log.dart';
+import 'package:flutter_with_hive/view/home_page/main_home_screen_controller.dart';
+import 'package:flutter_with_hive/widgets/text/app_style.dart';
 import 'package:get/get.dart';
+
 import 'chat_controller.dart';
 
 class AiChatbotScreen extends StatelessWidget {
@@ -21,32 +27,38 @@ class AiChatbotScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [const Color(0xFF0F0F1E), const Color(0xFF1A1A2E), const Color(0xFF16213E)],
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        behavior: HitTestBehavior.translucent,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [const Color(0xFF0F0F1E), const Color(0xFF1A1A2E), const Color(0xFF16213E)],
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: Obx(
-            () => Column(
-              children: [
-                _buildHeader(),
-                Expanded(
-                  child: ListView.builder(
-                    controller: scrollController,
-                    padding: const EdgeInsets.all(16),
-                    itemCount: controller.messages.length,
-                    itemBuilder: (context, index) {
-                      return _buildMessageBubble(controller.messages[index], index);
-                    },
+          child: SafeArea(
+            child: Obx(
+              () => Column(
+                children: [
+                  _buildHeader(),
+                  Expanded(
+                    child: ListView.builder(
+                      controller: scrollController,
+                      padding: EdgeInsets.all(16.r),
+                      itemCount: controller.messages.length,
+                      itemBuilder: (context, index) {
+                        return _buildMessageBubble(controller.messages[index], index);
+                      },
+                    ),
                   ),
-                ),
-                controller.isTyping.value ? _buildTypingIndicator() : const SizedBox.shrink(),
-                _buildInputArea(controller),
-              ],
+                  controller.isTyping.value ? _buildTypingIndicator() : const SizedBox.shrink(),
+                  _buildInputArea(controller),
+                ],
+              ),
             ),
           ),
         ),
@@ -56,43 +68,59 @@ class AiChatbotScreen extends StatelessWidget {
 
   Widget _buildHeader() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20.r),
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [Colors.blue.shade600.withValues(alpha: 0.2), Colors.purple.shade600.withValues(alpha: 0.2)]),
+        gradient: LinearGradient(colors: [AppColors.appPink.withValues(alpha: 0.2), AppColors.appPurple.withValues(alpha: 0.2)]),
         border: Border(bottom: BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1)),
       ),
       child: Row(
         children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.blue.shade400, Colors.purple.shade400]),
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [BoxShadow(color: Colors.blue.withValues(alpha: 0.3), blurRadius: 12, offset: const Offset(0, 4))],
+          InkWell(
+            onTap: () {
+              MainHomeScreenController.to.currentIndex.value = 0;
+              Get.delete<AiChatBotController>();
+
+              printLog("Backe to Main screen");
+            },
+            child: Container(
+              padding: EdgeInsets.all(8.r),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [AppColors.appPink, AppColors.appPurple]),
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 20.r),
             ),
-            child: const Icon(Icons.smart_toy_rounded, color: Colors.white, size: 28),
           ),
-          const SizedBox(width: 16),
+
+          SizedBox(width: 16.w),
+          Container(
+            padding: EdgeInsets.all(12.r),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [AppColors.appPink, AppColors.appPurple]),
+              borderRadius: BorderRadius.circular(16.r),
+              boxShadow: [BoxShadow(color: AppColors.appPink.withValues(alpha: 0.3), blurRadius: 12, offset: const Offset(0, 4))],
+            ),
+            child: Icon(Icons.smart_toy_rounded, color: Colors.white, size: 28.r),
+          ),
+          SizedBox(width: 12.h),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'AI Assistant By Mansoor',
-                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-              ),
+              Text('AI Assistant By Mansoor', style: AppStyle.style20w700(color: AppColors.whiteColor)),
+
               Row(
                 children: [
                   Container(
-                    width: 10,
-                    height: 10,
+                    width: 10.w,
+                    height: 10.h,
                     decoration: BoxDecoration(
-                      color: AiChatBotController.to.isOnline.value ? Colors.greenAccent : Colors.red,
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: [BoxShadow(color: Colors.greenAccent.withValues(alpha: 0.5), blurRadius: 8)],
+                      color: AiChatBotController.to.isOnline.value ? AppColors.appGreenC : AppColors.appRedC,
+                      borderRadius: BorderRadius.circular(5.r),
+                      boxShadow: [BoxShadow(color: AppColors.appGreenC.withValues(alpha: 0.5), blurRadius: 8)],
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Text(AiChatBotController.to.isOnline.value ? 'Online' : "Offline", style: TextStyle(color: Colors.grey.shade400, fontSize: 14)),
+                  SizedBox(width: 8.w),
+                  Text(AiChatBotController.to.isOnline.value ? 'Online' : "Offline", style: AppStyle.style14w400(color: AppColors.appGreyC)),
                 ],
               ),
             ],
@@ -147,15 +175,15 @@ class AiChatbotScreen extends StatelessWidget {
                   ],
                   border: Border.all(color: message.isUser ? Colors.blue.withValues(alpha: 0.3) : Colors.white.withValues(alpha: 0.1), width: 1),
                 ),
-                child: Text(message.text, style: const TextStyle(color: Colors.white, fontSize: 15, height: 1.4)),
+                child: Text(message.text, style: AppStyle.style15w500(color: AppColors.whiteColor).copyWith(height: 1.4)),
               ),
             ),
             if (message.isUser) ...[
-              const SizedBox(width: 12),
+              SizedBox(width: 12.w),
               Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(color: Colors.blue.shade600, borderRadius: BorderRadius.circular(12)),
-                child: const Icon(Icons.person_rounded, color: Colors.white, size: 20),
+                padding: EdgeInsets.all(8.r),
+                decoration: BoxDecoration(color: Colors.blue.shade600, borderRadius: BorderRadius.circular(12.r)),
+                child: Icon(Icons.person_rounded, color: Colors.white, size: 20.r),
               ),
             ],
           ],
@@ -166,26 +194,26 @@ class AiChatbotScreen extends StatelessWidget {
 
   Widget _buildTypingIndicator() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(8.r),
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.blue.shade400, Colors.purple.shade400]),
-              borderRadius: BorderRadius.circular(12),
+              gradient: LinearGradient(colors: [AppColors.appPink, AppColors.appPurple]),
+              borderRadius: BorderRadius.circular(12.r),
             ),
-            child: const Icon(Icons.smart_toy_rounded, color: Colors.white, size: 20),
+            child: Icon(Icons.smart_toy_rounded, color: Colors.white, size: 20.r),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.w),
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16.r),
             decoration: BoxDecoration(
               gradient: const LinearGradient(colors: [Color(0xFF1E1E2E), Color(0xFF252535)]),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 1),
             ),
-            child: SpinKitThreeBounce(color: Colors.white, size: 20),
+            child: SpinKitThreeBounce(color: Colors.white, size: 20.r),
             //Row(children: [_buildDot(0), const SizedBox(width: 6), _buildDot(1), const SizedBox(width: 6), _buildDot(2)]),
           ),
         ],
@@ -214,9 +242,10 @@ class AiChatbotScreen extends StatelessWidget {
                 style: const TextStyle(color: Colors.white, fontSize: 15),
                 decoration: InputDecoration(
                   hintText: 'Type your message...',
-                  hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 15),
+                  hintStyle: AppStyle.style15w500(color: AppColors.appGreyC),
+
                   border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
                 ),
                 onSubmitted: (value) => controller.sendMessage(value),
               ),

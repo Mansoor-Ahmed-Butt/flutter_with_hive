@@ -6,17 +6,24 @@ import 'package:flutter_with_hive/widgets/text/app_style.dart';
 import 'package:get/get.dart';
 
 // Main Screen with Bottom Navigation
-class MainScreen12 extends StatelessWidget {
-  const MainScreen12({super.key});
+class MainHomeScreen extends StatelessWidget {
+  const MainHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final MainHomeScreenController navController = Get.put(MainHomeScreenController());
+    final MainHomeScreenController mainHomeScreenController = Get.put(MainHomeScreenController());
 
     return Scaffold(
       extendBody: true,
-      body: Obx(() => navController.screens[navController.currentIndex.value]),
-      bottomNavigationBar: Obx(() => _buildFloatingNavBar(navController)),
+      body: Obx(() => mainHomeScreenController.screens[mainHomeScreenController.currentIndex.value]),
+      bottomNavigationBar: Obx(() {
+        // Hide bottom bar when index is 3
+        if (mainHomeScreenController.currentIndex.value == 2) {
+          return const SizedBox.shrink(); // hides it completely
+        }
+        return _buildFloatingNavBar(mainHomeScreenController);
+      }),
+      //bottomNavigationBar: Obx(() => _buildFloatingNavBar(mainHomeScreenController)),
     );
   }
 

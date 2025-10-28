@@ -29,23 +29,23 @@ class AppColors {
   static const startCardColor1 = Color(0xFF1E1E3F);
   static const startCardColor2 = Color(0xFF2A2A4E);
   //// Resume Card Colors
-  static const resumeCardColor1 =  Color(0xFF1E1E3F);
+  static const resumeCardColor1 = Color(0xFF1E1E3F);
   static const resumeCardColor2 = Color(0xFF2A2A4E);
-
-
-
-
-
+  //// GetStarted Button Colors On Boarding Page
+  static const getStartedButtonColor22 = Color(0xFFF97316);
+  static const getStartedButtonColor33 = Color(0xFF3B82F6);
 
   static const appBlue = Color(0xFF6366F1);
   static const appPurple = Color(0xFF8B5CF6);
   static const appPink = Color(0xFFEC4899);
-  static const appYellowC =  Color(0xFFFBBF24);
-  static const appOrangeC =  Color(0xFFF97316);
-  static const appGreenC =  Color(0xFF10B981);
-  static const appDarkGreenC =  Color(0xFF059669);
-  static const appDarkYellowC=Color(0xFFF59E0B);
-  static const appLightYellowC=Color(0xFFEAB308);
+  static const appGreyC = Color.fromRGBO(158, 158, 158, 1);
+  static const appYellowC = Color(0xFFFBBF24);
+  static const appOrangeC = Color(0xFFF97316);
+  static const appRedC = Colors.red;
+  static const appGreenC = Color(0xFF10B981);
+  static const appDarkGreenC = Color(0xFF059669);
+  static const appDarkYellowC = Color(0xFFF59E0B);
+  static const appLightYellowC = Color(0xFFEAB308);
   static const placeHolderColor = Color(0xFFCCCCCC);
   static const bodyTextDark = Color(0xFF444444);
   static const Color red = Colors.red;
