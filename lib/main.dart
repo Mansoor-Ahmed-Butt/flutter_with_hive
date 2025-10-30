@@ -28,6 +28,10 @@ Future<void> main() async {
 
   runApp(GlobalLoaderOverlay(child: MyApp()));
 
+  // Initialize AdMob after the Flutter engine is running so the plugin is registered.
+  // Calling plugin methods before an attached engine can cause MissingPluginException.
+  MobileAds.instance.initialize();
+
   // Remove splash after first frame so UI has drawn
   WidgetsBinding.instance.addPostFrameCallback((_) {
     FlutterNativeSplash.remove();
@@ -35,9 +39,6 @@ Future<void> main() async {
 }
 
 Future<void> _initializeServices() async {
-  // Initialize AdMob
-  await MobileAds.instance.initialize();
-
   // Initialize Hive storage
   final directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path);
@@ -53,7 +54,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,

@@ -16,7 +16,7 @@ class ProgressDialogCustom {
         context.loaderOverlay.show(
           widgetBuilder: (progress) => Stack(
             children: [
-              Container(color: Colors.black.withValues(alpha: 0.4)),
+              Container(color: AppColors.blackColor.withValues(alpha: 0.4)),
               Center(
                 child: Container(
                   height: 120.0,
@@ -34,7 +34,7 @@ class ProgressDialogCustom {
         _fallbackDialogShown = true;
         showDialog<void>(
           context: context,
-          barrierColor: Colors.black.withValues(alpha: 0.4),
+          barrierColor: AppColors.blackColor.withValues(alpha: 0.4),
           barrierDismissible: false,
           useRootNavigator: true,
           builder: (ctx) => Center(

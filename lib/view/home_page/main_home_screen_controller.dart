@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_with_hive/ads_implementation.dart';
 import 'package:flutter_with_hive/view/ai_chat_bot/chat_screen.dart';
 import 'package:flutter_with_hive/view/home_page/my_home_screens/my_home_screen.dart';
 import 'package:flutter_with_hive/view/home_page/my_profile_screens/my_profile_screen.dart';
@@ -24,6 +25,7 @@ class MainHomeScreenController extends GetxController {
     const AiChatbotScreen(),
 
     // const MyResumesScreen(),
+   // AdsImplementationScreen(),
     const ProfileScreen(),
   ];
   // ---------- Resume Dialog Data ----------

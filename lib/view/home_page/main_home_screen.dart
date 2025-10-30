@@ -38,7 +38,7 @@ class MainHomeScreen extends StatelessWidget {
           BoxShadow(color: AppColors.bottomNavShadowColor1.withValues(alpha: 0.3), blurRadius: 30, offset: const Offset(0, 10)),
           BoxShadow(color: AppColors.bottomNavShadowColor2.withValues(alpha: 0.5), blurRadius: 20, offset: const Offset(0, 5)),
         ],
-        border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 1.5.h),
+        border: Border.all(color: AppColors.whiteColor.withValues(alpha: 0.1), width: 1.5.h),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

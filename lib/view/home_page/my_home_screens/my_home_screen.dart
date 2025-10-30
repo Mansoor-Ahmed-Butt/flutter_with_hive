@@ -310,7 +310,7 @@ class _AnimatedHomeScreenState extends State<AnimatedHomeScreen> with TickerProv
                           //   );
                           // },
                           onTap: () {
-                            alertForResume(context,);
+                            alertForResume(context);
                           },
 
                           child: _buildFeatureCard(

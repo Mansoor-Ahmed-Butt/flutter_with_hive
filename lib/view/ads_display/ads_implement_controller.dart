@@ -6,14 +6,36 @@ import 'package:flutter/material.dart';
 class AdsImplementController extends GetxController {
   InterstitialAd? _interstitialAd;
   RewardedAd? _rewardedAd;
+  BannerAd? _bannerAd;
+  bool _isBannerLoaded = false;
   bool _pendingShowInterstitial = false;
   bool _pendingShowRewarded = false;
-
   @override
   void onInit() {
     super.onInit();
     _loadInterstitial();
     _loadRewarded();
+    // loadBanner();
+  }
+
+  void loadBanner() {
+    _bannerAd = BannerAd(
+      adUnitId: AdsHelper.bannerAdUnitId,
+      size: AdSize.banner,
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          _isBannerLoaded = true;
+          debugPrint('Banner ad loaded');
+        },
+        onAdFailedToLoad: (ad, err) {
+          _isBannerLoaded = false;
+          ad.dispose();
+          debugPrint('Banner ad failed to load: ${err.message}');
+        },
+      ),
+    );
+    _bannerAd!.load();
   }
 
   void _loadInterstitial() {
@@ -59,6 +81,19 @@ class AdsImplementController extends GetxController {
         },
       ),
     );
+  }
+
+  Widget showBanner() {
+    if (_isBannerLoaded && _bannerAd != null) {
+      return Container(
+        alignment: Alignment.center,
+        width: _bannerAd!.size.width.toDouble(),
+        height: _bannerAd!.size.height.toDouble(),
+        child: AdWidget(ad: _bannerAd!),
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 
   void showInterstitial() {
@@ -114,6 +149,7 @@ class AdsImplementController extends GetxController {
   void onClose() {
     _interstitialAd?.dispose();
     _rewardedAd?.dispose();
+    // _bannerAd?.dispose();
     super.onClose();
   }
 }

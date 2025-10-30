@@ -92,9 +92,9 @@ class CustomButton extends StatelessWidget {
               ? BoxDecoration(
                   color: bg ?? (isOnDark ? Colors.transparent : AppColors.lightBackgroundColor),
                   border: isButtonInHeader
-                      ? Border.all(color: Colors.white.withValues(alpha: 0.25))
-                      : Border(right: BorderSide(color: Colors.white.withValues(alpha: 0.25))),
-                  // border: Border.all(color: Colors.white.withValues(alpha:0.5)),
+                      ? Border.all(color: AppColors.whiteColor.withValues(alpha: 0.25))
+                      : Border(right: BorderSide(color: AppColors.whiteColor.withValues(alpha: 0.25))),
+                  // border: Border.all(color: AppColors.whiteColor.withValues(alpha:0.5)),
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(Branding.tFborderR), topLeft: Radius.circular(Branding.tFborderR)),
                 )
               : ShapeDecoration(
@@ -113,7 +113,7 @@ class CustomButton extends StatelessWidget {
                   if (icon != null || svgPath != null)
                     (icon != null)
                         ? Tooltip(
-                            decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(6)),
+                            decoration: BoxDecoration(color: AppColors.blackColor, borderRadius: BorderRadius.circular(6)),
                             // borderColor: Colors.transparent,
                             message: onlyIcon ? btnText : "",
                             // backgroundColor: const Color.fromARGB(255, 0, 0, 0),
@@ -123,7 +123,7 @@ class CustomButton extends StatelessWidget {
                           )
                         : Tooltip(
                             message: btnText != "" ? btnText : "",
-                            decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(6)),
+                            decoration: BoxDecoration(color: AppColors.blackColor, borderRadius: BorderRadius.circular(6)),
                             textStyle: textStyle ?? const TextStyle(color: Colors.white),
                             // position: TooltipPosition.bottom,
                             child: SvgPicture.asset(

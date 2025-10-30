@@ -182,8 +182,8 @@ class ShimmerLinesPainter extends CustomPainter {
     for (var line in lines) {
       paint.shader = LinearGradient(
         colors: [
-          Colors.white.withValues(alpha: line['opacity'] as double),
-          Colors.white.withValues(alpha: (line['opacity'] as double) * 0.3),
+          AppColors.whiteColor.withValues(alpha: line['opacity'] as double),
+          AppColors.whiteColor.withValues(alpha: (line['opacity'] as double) * 0.3),
           AppColors.transparent,
         ],
         stops: const [0.0, 0.5, 1.0],

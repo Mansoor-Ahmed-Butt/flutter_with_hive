@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_with_hive/core/constants.dart';
+import 'package:flutter_with_hive/core/themes.dart';
 
 // Custom Bottom Navigation Bar Widget
 class CustomBottomNavBar extends StatelessWidget {
@@ -26,7 +27,7 @@ class CustomBottomNavBar extends StatelessWidget {
       height: 70,
       decoration: BoxDecoration(
         color: backgroundColor,
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, -5))],
+        boxShadow: [BoxShadow(color: AppColors.blackColor.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, -5))],
       ),
       child: SafeArea(
         top: false,
@@ -116,7 +117,7 @@ class FloatingBottomNavBar extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(30),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, 10))],
+        boxShadow: [BoxShadow(color: AppColors.blackColor.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, 10))],
       ),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: List.generate(items.length, (index) => _buildNavItem(index))),
     );
@@ -212,7 +213,7 @@ class MinimalBottomNavBar extends StatelessWidget {
       height: 65,
       decoration: BoxDecoration(
         color: backgroundColor,
-        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1)),
+        border: Border(top: BorderSide(color: AppColors.whiteColor.withValues(alpha: 0.1), width: 1)),
       ),
       child: SafeArea(
         top: false,
@@ -257,8 +258,6 @@ class MinimalBottomNavBar extends StatelessWidget {
     );
   }
 }
-
-
 
 class SearchTab extends StatelessWidget {
   const SearchTab({super.key});

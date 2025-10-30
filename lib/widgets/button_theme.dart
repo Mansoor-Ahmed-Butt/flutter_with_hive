@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_with_hive/core/themes.dart';
 
-
 enum ButtonVariant {
   outlineWhite,
   outlineWhite25,
@@ -50,78 +49,78 @@ class ButtonThemeCustom {
       case ButtonVariant.outlineBodyText:
         return ButtonColorPalete(
           backgroundColor: Colors.transparent,
-          textColor:AppColors. bodyText,
-          borderColor:AppColors. bodyText,
-          iconColor:AppColors. bodyText,
+          textColor: AppColors.bodyText,
+          borderColor: AppColors.bodyText,
+          iconColor: AppColors.bodyText,
         );
       case ButtonVariant.outlineBorderColor:
         return ButtonColorPalete(
           backgroundColor: Colors.transparent,
           textColor: AppColors.borderColor,
-          borderColor:AppColors. borderColor,
-          iconColor:AppColors. borderColor,
+          borderColor: AppColors.borderColor,
+          iconColor: AppColors.borderColor,
         );
       case ButtonVariant.outlineBodyTextDark:
         return ButtonColorPalete(
           backgroundColor: Colors.transparent,
-          textColor:AppColors. bodyTextDark,
+          textColor: AppColors.bodyTextDark,
           borderColor: AppColors.bodyTextDark,
-          iconColor:AppColors. bodyTextDark,
+          iconColor: AppColors.bodyTextDark,
         );
       case ButtonVariant.outlinePrimary:
         return ButtonColorPalete(
           backgroundColor: Colors.transparent,
-          textColor:AppColors. primaryColor,
-          borderColor:AppColors. primaryColor,
-          iconColor:AppColors.primaryColor,
+          textColor: AppColors.primaryColor,
+          borderColor: AppColors.primaryColor,
+          iconColor: AppColors.primaryColor,
         );
       case ButtonVariant.outlineTitleColorWithBorder:
         return ButtonColorPalete(
           backgroundColor: AppColors.lightBackgroundColor,
-          textColor:AppColors. titleColor,
-          borderColor:AppColors. borderColor,
+          textColor: AppColors.titleColor,
+          borderColor: AppColors.borderColor,
           iconColor: AppColors.titleColor,
         );
       case ButtonVariant.outlineSecondary:
         return ButtonColorPalete(
           backgroundColor: Colors.transparent,
-          textColor:AppColors. secondaryColorOrange,
+          textColor: AppColors.secondaryColorOrange,
           borderColor: AppColors.secondaryColorOrange,
-          iconColor:AppColors. secondaryColorOrange,
+          iconColor: AppColors.secondaryColorOrange,
         );
       case ButtonVariant.filledWhite:
         return ButtonColorPalete(
           backgroundColor: AppColors.whiteColor,
-          textColor: Colors.black,
+          textColor: AppColors.blackColor,
           borderColor: AppColors.whiteColor,
-          iconColor: Colors.black,
+          iconColor: AppColors.blackColor,
         );
       case ButtonVariant.filledBodyText:
         return ButtonColorPalete(
-          backgroundColor:AppColors. bodyText,
+          backgroundColor: AppColors.bodyText,
           textColor: AppColors.whiteColor,
-          borderColor:AppColors. bodyText,
+          borderColor: AppColors.bodyText,
           iconColor: AppColors.whiteColor,
         );
       case ButtonVariant.filledBodyTextDark:
         return ButtonColorPalete(
-          backgroundColor:AppColors. bodyTextDark,
+          backgroundColor: AppColors.bodyTextDark,
           textColor: AppColors.whiteColor,
           borderColor: AppColors.bodyTextDark,
           iconColor: AppColors.whiteColor,
         );
       case ButtonVariant.filledPrimary:
         return ButtonColorPalete(
-          backgroundColor:AppColors. primaryColor,
+          backgroundColor: AppColors.primaryColor,
           textColor: AppColors.whiteColor,
-          borderColor:AppColors. primaryColor,
+          borderColor: AppColors.primaryColor,
           iconColor: AppColors.whiteColor,
         );
       case ButtonVariant.filledSecondary:
         return ButtonColorPalete(
-          backgroundColor:AppColors. secondaryColorOrange,
+          backgroundColor: AppColors.secondaryColorOrange,
           textColor: AppColors.whiteColor,
-          borderColor:AppColors. secondaryColorOrange,
+          borderColor: AppColors.secondaryColorOrange,
           iconColor: AppColors.whiteColor,
         );
       case ButtonVariant.filledWhiteWithPrimary:
@@ -129,7 +128,7 @@ class ButtonThemeCustom {
           backgroundColor: AppColors.whiteColor,
           textColor: AppColors.primaryColor,
           borderColor: AppColors.whiteColor,
-          iconColor:AppColors. primaryColor,
+          iconColor: AppColors.primaryColor,
         );
       case ButtonVariant.filledWhiteWithSecondary:
         return ButtonColorPalete(
@@ -140,16 +139,16 @@ class ButtonThemeCustom {
         );
       case ButtonVariant.filledPrimaryWithBodyText:
         return ButtonColorPalete(
-          backgroundColor:AppColors. primaryColor,
-          textColor:AppColors. bodyText,
-          borderColor:AppColors. primaryColor,
-          iconColor:AppColors. bodyText,
+          backgroundColor: AppColors.primaryColor,
+          textColor: AppColors.bodyText,
+          borderColor: AppColors.primaryColor,
+          iconColor: AppColors.bodyText,
         );
       case ButtonVariant.filledPrimaryWithBodyTextDark:
         return ButtonColorPalete(
-          backgroundColor:AppColors. primaryColor,
-          textColor:AppColors.bodyTextDark,
-          borderColor:AppColors. primaryColor,
+          backgroundColor: AppColors.primaryColor,
+          textColor: AppColors.bodyTextDark,
+          borderColor: AppColors.primaryColor,
           iconColor: AppColors.bodyTextDark,
         );
       case ButtonVariant.filledPrimaryWithWhiteBodyText:
@@ -161,17 +160,17 @@ class ButtonThemeCustom {
         );
       case ButtonVariant.filledOrangeWithPrimaryColorIconAndText:
         return ButtonColorPalete(
-          backgroundColor:AppColors. secondaryColorOrange,
-          textColor:AppColors. primaryColor,
-          borderColor:AppColors. secondaryColorOrange,
-          iconColor:AppColors. primaryColor,
+          backgroundColor: AppColors.secondaryColorOrange,
+          textColor: AppColors.primaryColor,
+          borderColor: AppColors.secondaryColorOrange,
+          iconColor: AppColors.primaryColor,
         );
       case ButtonVariant.emptyUnderLineWithSecondary:
         return ButtonColorPalete(
           backgroundColor: Colors.transparent,
-          textColor:AppColors. secondaryColorOrange,
+          textColor: AppColors.secondaryColorOrange,
           borderColor: Colors.transparent,
-          iconColor:AppColors. secondaryColorOrange,
+          iconColor: AppColors.secondaryColorOrange,
         );
 
       default:
@@ -191,10 +190,5 @@ class ButtonColorPalete {
   final Color borderColor;
   final Color iconColor;
 
-  ButtonColorPalete({
-    required this.backgroundColor,
-    required this.textColor,
-    required this.borderColor,
-    required this.iconColor,
-  });
+  ButtonColorPalete({required this.backgroundColor, required this.textColor, required this.borderColor, required this.iconColor});
 }

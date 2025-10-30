@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_with_hive/core/themes.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -139,7 +140,7 @@ class ChatScreen extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [Colors.blue.shade600.withValues(alpha: 0.2), Colors.purple.shade600.withValues(alpha: 0.2)]),
-        border: Border(bottom: BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1)),
+        border: Border(bottom: BorderSide(color: AppColors.whiteColor.withValues(alpha: 0.1), width: 1)),
       ),
       child: Row(
         children: [
@@ -220,12 +221,15 @@ class ChatScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: message.isUser ? Colors.blue.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.2),
+                      color: message.isUser ? Colors.blue.withValues(alpha: 0.3) : AppColors.blackColor.withValues(alpha: 0.2),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
                   ],
-                  border: Border.all(color: message.isUser ? Colors.blue.withValues(alpha: 0.3) : Colors.white.withValues(alpha: 0.1), width: 1),
+                  border: Border.all(
+                    color: message.isUser ? Colors.blue.withValues(alpha: 0.3) : AppColors.whiteColor.withValues(alpha: 0.1),
+                    width: 1,
+                  ),
                 ),
                 child: Text(message.text, style: const TextStyle(color: Colors.white, fontSize: 15, height: 1.4)),
               ),
@@ -263,7 +267,7 @@ class ChatScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: const LinearGradient(colors: [Color(0xFF1E1E2E), Color(0xFF252535)]),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 1),
+              border: Border.all(color: AppColors.whiteColor.withValues(alpha: 0.1), width: 1),
             ),
             child: Row(children: [_buildDot(0), const SizedBox(width: 6), _buildDot(1), const SizedBox(width: 6), _buildDot(2)]),
           ),
@@ -297,7 +301,7 @@ class ChatScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [Colors.blue.shade600.withValues(alpha: 0.1), Colors.purple.shade600.withValues(alpha: 0.1)]),
-        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1)),
+        border: Border(top: BorderSide(color: AppColors.whiteColor.withValues(alpha: 0.1), width: 1)),
       ),
       child: Row(
         children: [
@@ -306,7 +310,7 @@ class ChatScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(0xFF1E1E2E),
                 borderRadius: BorderRadius.circular(28),
-                border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 1),
+                border: Border.all(color: AppColors.whiteColor.withValues(alpha: 0.1), width: 1),
               ),
               child: TextField(
                 controller: controller.textController,

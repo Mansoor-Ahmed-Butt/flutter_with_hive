@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_with_hive/core/themes.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
@@ -11,7 +12,7 @@ class PremiumResumeDialog extends StatefulWidget {
 
 class _PremiumResumeDialogState extends State<PremiumResumeDialog> with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
-  
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -65,7 +66,7 @@ class _PremiumResumeDialogState extends State<PremiumResumeDialog> with SingleTi
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(28),
-            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 50, offset: const Offset(0, 20))],
+            boxShadow: [BoxShadow(color: AppColors.blackColor.withOpacity(0.2), blurRadius: 50, offset: const Offset(0, 20))],
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -157,7 +158,7 @@ class _PremiumResumeDialogState extends State<PremiumResumeDialog> with SingleTi
         children: [
           Container(
             padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(color: AppColors.whiteColor.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
             child: const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
           ),
           const SizedBox(width: 16),
@@ -219,7 +220,7 @@ class _PremiumResumeDialogState extends State<PremiumResumeDialog> with SingleTi
                     color: const Color(0xFF6366F1),
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: 3),
-                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 8, offset: const Offset(0, 2))],
+                    boxShadow: [BoxShadow(color: AppColors.blackColor.withOpacity(0.2), blurRadius: 8, offset: const Offset(0, 2))],
                   ),
                   child: const Icon(Icons.camera_alt_rounded, size: 18, color: Colors.white),
                 ),

@@ -76,15 +76,8 @@ class MyTextFormFieldForMultipleLine extends StatelessWidget {
         if (showheading)
           Row(
             children: [
-              Text(
-                labelText.toString(),
-                style: TextFiledTheme.textStyleHeader(fontSizeForLabel),
-              ),
-              if (isRequired)
-                Text(
-                  " *",
-                  style: TextFiledTheme.textStyleHeaderRequired(fontSizeForLabel),
-                ),
+              Text(labelText.toString(), style: TextFiledTheme.textStyleHeader(fontSizeForLabel)),
+              if (isRequired) Text(" *", style: TextFiledTheme.textStyleHeaderRequired(fontSizeForLabel)),
               if (isshowHelp)
                 Padding(
                   padding: const EdgeInsets.only(left: 4.0),
@@ -110,12 +103,9 @@ class MyTextFormFieldForMultipleLine extends StatelessWidget {
                     //     ),
                     //   );
                     // },
-                    child: Icon(
-                      Icons.help,
-                      size: 15.sp,
-                    ),
+                    child: Icon(Icons.help, size: 15.sp),
                   ),
-                )
+                ),
             ],
           ),
         SizedH(isSpaceBetween),
@@ -135,34 +125,35 @@ class MyTextFormFieldForMultipleLine extends StatelessWidget {
           child: Directionality(
             textDirection: TextDirection.ltr,
             child: TextFormField(
-                controller: controller,
-                initialValue: intialValue,
-                style: TextFiledTheme.textStyle(fontSizeForAll),
+              controller: controller,
+              initialValue: intialValue,
+              style: TextFiledTheme.textStyle(fontSizeForAll),
 
-                // scrollPadding: EdgeInsets.all(0),
-                maxLines: 50,
-                enabled: isEnabled,
-                cursorColor: Colors.black,
-                decoration: TextFiledTheme.inputDecoration(
-                  isPaddingForMultiLine: extraMultiLinePadding,
-                  fontSizeForAll: fontSizeForAll,
-                  isFieldForTable: false,
-                  isZeroPadding: false,
-                  hintText: hintText ?? "",
-                  suffixIcon: suffixIcon,
-                ),
-                obscureText: isPassword ? true : false,
-                validator: validator as String? Function(String?)?,
-                onSaved: onSaved as void Function(String?)?,
-                onChanged: onChange as void Function(String?)?,
-                onFieldSubmitted: onFieldSubmitted as void Function(String?)?,
-                keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.multiline,
-                inputFormatters: (maxLength != null)
-                    ? [
-                        LengthLimitingTextInputFormatter(maxLength), // Limits the input length to 3
-                        // FilteringTextInputFormatter., // Allows only digits
-                      ]
-                    : []),
+              // scrollPadding: EdgeInsets.all(0),
+              maxLines: 50,
+              enabled: isEnabled,
+              cursorColor: AppColors.blackColor,
+              decoration: TextFiledTheme.inputDecoration(
+                isPaddingForMultiLine: extraMultiLinePadding,
+                fontSizeForAll: fontSizeForAll,
+                isFieldForTable: false,
+                isZeroPadding: false,
+                hintText: hintText ?? "",
+                suffixIcon: suffixIcon,
+              ),
+              obscureText: isPassword ? true : false,
+              validator: validator as String? Function(String?)?,
+              onSaved: onSaved as void Function(String?)?,
+              onChanged: onChange as void Function(String?)?,
+              onFieldSubmitted: onFieldSubmitted as void Function(String?)?,
+              keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.multiline,
+              inputFormatters: (maxLength != null)
+                  ? [
+                      LengthLimitingTextInputFormatter(maxLength), // Limits the input length to 3
+                      // FilteringTextInputFormatter., // Allows only digits
+                    ]
+                  : [],
+            ),
           ),
         ),
       ],

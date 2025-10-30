@@ -201,7 +201,7 @@ class _MyTextFieldForSingleLineState extends State<MyTextFieldForSingleLine> {
               initialValue: widget.intialValue,
               textDirection: TextDirection.ltr,
               autofocus: widget.isAutoFocus,
-              cursorColor: Colors.black,
+              cursorColor: AppColors.blackColor,
               enabled: widget.isEnabled,
               inputFormatters: (widget.isFIEN ?? false)
                   ? [FeinFormatter()]

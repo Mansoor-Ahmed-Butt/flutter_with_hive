@@ -41,6 +41,8 @@ class AppColors {
   static const appGreyC = Color.fromRGBO(158, 158, 158, 1);
   static const appYellowC = Color(0xFFFBBF24);
   static const appOrangeC = Color(0xFFF97316);
+  static const appSkyBlueC =  Color.fromARGB(255, 66, 165, 245);
+  static const appPurpleWshadeC = Color.fromRGBO(171, 71, 188, 1);
   static const appRedC = Colors.red;
   static const appGreenC = Color(0xFF10B981);
   static const appDarkGreenC = Color(0xFF059669);

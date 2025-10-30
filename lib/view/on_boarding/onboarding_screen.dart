@@ -87,7 +87,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with TickerProvider
                           () => controller.currentPage.value < 2
                               ? TextButton(
                                   onPressed: controller.skipToEnd,
-                                  style: TextButton.styleFrom(foregroundColor: Colors.white.withValues(alpha: 0.7)),
+                                  style: TextButton.styleFrom(foregroundColor: AppColors.whiteColor.withValues(alpha: 0.7)),
                                   child: const Text('Skip', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                                 )
                               : const SizedBox.shrink(),
@@ -208,7 +208,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with TickerProvider
       height: 8,
       width: isActive ? 32 : 8,
       decoration: BoxDecoration(
-        color: isActive ? color : Colors.white.withValues(alpha: 0.3),
+        color: isActive ? color : AppColors.whiteColor.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(4),
         boxShadow: isActive ? [BoxShadow(color: color.withValues(alpha: 0.5), blurRadius: 8, spreadRadius: 1)] : null,
       ),
@@ -246,7 +246,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with TickerProvider
 //                 style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
 //               ),
 //               const SizedBox(height: 15),
-//               Text('You\'re all set to create amazing resumes', style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 16)),
+//               Text('You\'re all set to create amazing resumes', style: TextStyle(color: AppColors.whiteColor.withValues(alpha: 0.7), fontSize: 16)),
 //               const SizedBox(height: 50),
 //               Container(
 //                 margin: const EdgeInsets.symmetric(horizontal: 30),

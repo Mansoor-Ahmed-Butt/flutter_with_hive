@@ -4,7 +4,6 @@ import 'package:flutter_with_hive/view/home_page/main_home_screen.dart';
 import 'package:flutter_with_hive/view/on_boarding/onboarding_screen.dart';
 import 'package:flutter_with_hive/view/log_in/view/log_in.dart';
 import 'package:flutter_with_hive/view/user_testing/user_screen.dart';
-import 'package:flutter_with_hive/widgets/navigation_custom/bottom_navigation_bar.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_with_hive/view/voice_vapi/vapi_voice_real_time.dart';
@@ -26,10 +25,10 @@ class RouteConfig {
     navigatorKey: Get.key,
     routes: [
       // GoRoute(path: '/', builder: (context, state) => MainHomeScreen()),
-      GoRoute(path: '/', builder: (context, state) => OnboardingScreen()),
+         GoRoute(path: '/', builder: (context, state) => OnboardingScreen()),
 
       // GoRoute(path: '/', builder: (context, state) => VapiChatScreen()),
-      //GoRoute(path: '/', builder: (context, state) => MainScreen()),
+      // GoRoute(path: '/', builder: (context, state) => MainScreen()),
       // GoRoute(path: '/', builder: (context, state) => UserScreen()),
       // GoRoute(path: '/', builder: (context, state) => AiChatbotScreen()),
       // GoRoute(path: '/', builder: (context, state) => AdsImplementationScreen()),
@@ -90,49 +89,7 @@ class RouteConfig {
           return const LogIn();
         },
       ),
-      // GoRoute(
-      //   path: "/Login",
-      //   name: loginUsaPageRoute,
-      //   // builder: (context, state) {
-      //   //   return const LoginPageUSA();
-      //   // },
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const LoginPage()),
-      // ),
-      // GoRoute(
-      //   path: signUpScreenRoute,
-      //   name: signUpScreenRoute,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const SignUpScreen()),
-      // ),
-      // GoRoute(
-      //   path: paymentPlanRoute,
-      //   name: paymentPlanRoute,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const PaymentPlan()),
-      // ),
-      // GoRoute(
-      //   path: verifyOtpScreenRoute,
-      //   name: verifyOtpScreenRoute,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const VerifyOtpScreen()),
-      // ),
-      // GoRoute(
-      //   path: setUpScreenRoute,
-      //   name: setUpScreenRoute,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, SetUpScreen()),
-      // ),
-      // GoRoute(
-      //   path: businessProfileSetupRoute,
-      //   name: businessProfileSetupRoute,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const BusinessProfileSetup()),
-      // ),
-      // GoRoute(
-      //   path: softwareInfoScreenRoute,
-      //   name: softwareInfoScreenRoute,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const SoftwareInfoScreen()),
-      // ),
-      // GoRoute(
-      //   path: finalizeSignupRoute,
-      //   name: finalizeSignupRoute,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const FinalizeSignup()),
-      // ),
+     
       // GoRoute(
       //   path: redirectOrganizationSetup,
       //   name: redirectOrganizationSetup,
@@ -149,34 +106,7 @@ class RouteConfig {
       //         ));
       //   },
       // ),
-      // GoRoute(
-      //   path: joinExistingCompany,
-      //   name: joinExistingCompany,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const JoinExistingCompany()),
-      // ),
-
-      // GoRoute(
-      //   path: paymentInfoRoute,
-      //   name: paymentInfoRoute,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const PaymentInfo()),
-      // ),
-
-      // GoRoute(
-      //   path: "/dashboard",
-      //   name: dashboard,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const Dashboard()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/myprofileScreen",
-      //   name: myprofileScreen,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, MyProfileScreen()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
+     
       // GoRoute(
       //   path: "/administrationMainScreen",
       //   name: administrationMainScreen,
@@ -203,118 +133,7 @@ class RouteConfig {
       //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
       //   },
       // ),
-      // GoRoute(
-      //   path: "/addContractor",
-      //   name: addContractor,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const AddContractor()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/contractors",
-      //   name: contractors,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const Contractors()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/contractorTimesheet",
-      //   name: contractorTimesheet,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const ContractorTimesheet()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/payContractor",
-      //   name: payContractor,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const PayContractor()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/payrollHistory",
-      //   name: payrollHistory,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const PayrollHistory()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/paycheckHistory",
-      //   name: paycheckHistory,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const PayCheckHistory()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/contractorPayments",
-      //   name: contractorPayments,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const ContractorPayments()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/deductionsReport",
-      //   name: deductionsReport,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const DeductionsReport()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/payrollTaxLiability",
-      //   name: payrollTaxLiability,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const PayrollTaxLiability()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/contractorReport",
-      //   name: contractorReport,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const ContractorReport()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/employeeReport",
-      //   name: employeeReport,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const EmployeeReport()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/addPayment",
-      //   name: addPayment,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const AddPayment()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/addEmployeeDirectory",
-      //   name: addEmployeeDirectory,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const AddEmployeeDirectoryMainScreen()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
-      // GoRoute(
-      //   path: "/employeeTimeSheet",
-      //   name: employeeTimeSheet,
-      //   pageBuilder: (context, state) => transitionsBuilder(context, state, const EmployeeTimeSheetMain()),
-      //   redirect: (context, state) async {
-      //     return await authMiddlewareGoRoute() ? null : loginUsaPageRoute;
-      //   },
-      // ),
+   
       // GoRoute(
       //   path: "/processPayroll",
       //   name: processPayroll,

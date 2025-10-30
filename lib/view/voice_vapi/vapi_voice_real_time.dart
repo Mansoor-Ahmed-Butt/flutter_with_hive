@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_with_hive/core/themes.dart';
 import 'package:get/get.dart';
 import 'vapi_voice_controller.dart';
 
@@ -123,7 +124,7 @@ class VapiChatScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: const Color(0xFF1A1A2E),
-              boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, -5))],
+              boxShadow: [BoxShadow(color: AppColors.blackColor.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, -5))],
             ),
             child: SafeArea(
               top: false,
@@ -168,7 +169,7 @@ class VapiChatScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: const Color(0xFF2D2D3E),
                         borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+                        border: Border.all(color: AppColors.whiteColor.withValues(alpha: 0.1)),
                       ),
                       child: TextField(
                         controller: controller.inputController,
@@ -241,7 +242,7 @@ class VapiChatScreen extends StatelessWidget {
                 : const LinearGradient(colors: [Color(0xFF2D2D3E), Color(0xFF3A3A4E)]),
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
-              BoxShadow(color: (isUser ? Colors.deepPurple : Colors.black).withValues(alpha: 0.3), blurRadius: 8, offset: const Offset(0, 2)),
+              BoxShadow(color: (isUser ? Colors.deepPurple : AppColors.blackColor).withValues(alpha: 0.3), blurRadius: 8, offset: const Offset(0, 2)),
             ],
           ),
           child: Text(msg['text']!, style: const TextStyle(color: Colors.white, fontSize: 15, height: 1.4)),

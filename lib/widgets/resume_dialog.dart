@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_with_hive/core/themes.dart';
 import 'package:flutter_with_hive/view/home_page/main_home_screen_controller.dart';
 
 // Add Address Information
@@ -105,7 +106,7 @@ Widget _buildHeader(BuildContext context) {
       children: [
         Container(
           padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(color: AppColors.whiteColor.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
           child: const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
         ),
         const SizedBox(width: 16),
@@ -169,7 +170,7 @@ Widget _buildProfilePicker() {
                   color: const Color(0xFF6366F1),
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.white, width: 3),
-                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 8, offset: const Offset(0, 2))],
+                  boxShadow: [BoxShadow(color: AppColors.blackColor.withOpacity(0.2), blurRadius: 8, offset: const Offset(0, 2))],
                 ),
                 child: const Icon(Icons.camera_alt_rounded, size: 18, color: Colors.white),
               ),

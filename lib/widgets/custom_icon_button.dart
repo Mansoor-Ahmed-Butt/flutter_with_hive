@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_with_hive/core/themes.dart';
 
-
 class CustomIcon extends StatelessWidget {
   const CustomIcon({
     super.key,
@@ -30,25 +29,22 @@ class CustomIcon extends StatelessWidget {
     return Container(
       height: size,
       width: size,
-      padding: iconOnly
-          ? EdgeInsets.zero
-          : (padding ?? ((svgPath == null) ? EdgeInsets.zero : EdgeInsets.all((size / 4.66666666667)))),
+      padding: iconOnly ? EdgeInsets.zero : (padding ?? ((svgPath == null) ? EdgeInsets.zero : EdgeInsets.all((size / 4.66666666667)))),
       decoration: iconOnly
           ? null
           : BoxDecoration(
-              color: isFilled ? (isOnDark ? AppColors.borderColor :AppColors. primaryColor) : Colors.transparent,
+              color: isFilled ? (isOnDark ? AppColors.borderColor : AppColors.primaryColor) : Colors.transparent,
               borderRadius: BorderRadius.circular(4),
-              border: Border.all(
-                color: isOnDark ? Colors.white.withValues(alpha: 0.25) : AppColors.primaryColor,
-                width: size / 28,
-              ),
+              border: Border.all(color: isOnDark ? AppColors.whiteColor.withValues(alpha: 0.25) : AppColors.primaryColor, width: size / 28),
             ),
       child: svgPath != null
           ? SvgPicture.asset(
               svgPath ?? "assets/icons/edit.svg",
               colorFilter: ColorFilter.mode(
                 iconColor ??
-                    (isFilled ? (isOnDark ?AppColors. borderColor :AppColors. whiteColor) : (isOnDark ? AppColors.borderColor :AppColors. primaryColor)),
+                    (isFilled
+                        ? (isOnDark ? AppColors.borderColor : AppColors.whiteColor)
+                        : (isOnDark ? AppColors.borderColor : AppColors.primaryColor)),
                 BlendMode.srcIn,
               ),
             )
@@ -56,7 +52,9 @@ class CustomIcon extends StatelessWidget {
               icon,
               color:
                   iconColor ??
-                  (isFilled ? (isOnDark ?AppColors. borderColor : AppColors.whiteColor) : (isOnDark ? AppColors.borderColor : AppColors.primaryColor)),
+                  (isFilled
+                      ? (isOnDark ? AppColors.borderColor : AppColors.whiteColor)
+                      : (isOnDark ? AppColors.borderColor : AppColors.primaryColor)),
               size: iconOnly ? size : (size - ((size / 4.66666666667) * 2)),
             ),
     );

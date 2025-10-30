@@ -21,7 +21,6 @@ class _AdsImplementationScreenState extends State<AdsImplementationScreen> {
   final controller = Get.put(AdsImplementController());
   @override
   Widget build(BuildContext context) {
- 
     final screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
@@ -62,9 +61,20 @@ class _AdsImplementationScreenState extends State<AdsImplementationScreen> {
                       btnText: "Show Rewarded",
                       backgroundColor: Colors.grey,
                     ),
+                    SizedBox(height: 30),
+                    CustomButton(
+                      onTap: () {
+                        // controller.loadBanner();
+                        // Get.snackbar('Ads', 'Requested Banner ad', snackPosition: SnackPosition.BOTTOM);
+                      },
+                      btnText: "Show Banner",
+                      backgroundColor: Colors.grey,
+                    ),
                   ],
                 ),
               ),
+              SizedBox(height: 30),
+              controller.showBanner(),
             ],
           ),
         ),
