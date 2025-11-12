@@ -4,12 +4,9 @@ import 'dart:math' as math;
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_with_hive/core/themes.dart';
-import 'package:flutter_with_hive/core/utils/dialog_helper.dart';
-import 'package:flutter_with_hive/core/utils/print_log.dart';
 import 'package:flutter_with_hive/widgets/custom_button/custom_button.dart';
 import 'package:flutter_with_hive/widgets/custom_icon_button.dart';
-import 'package:flutter_with_hive/widgets/popup_for_cv.dart';
-import 'package:flutter_with_hive/widgets/resume_dialog.dart';
+import 'package:flutter_with_hive/widgets/create_resume_alert/resume_dialog.dart';
 import 'package:flutter_with_hive/widgets/text/app_style.dart';
 
 // Animated Home Screen
@@ -310,7 +307,9 @@ class _AnimatedHomeScreenState extends State<AnimatedHomeScreen> with TickerProv
                           //   );
                           // },
                           onTap: () {
-                            alertForResume(context);
+                            // Replace your old alertForResume call with:
+                            showPremiumResumeDialog(context);
+                            // alertForResume(context);
                           },
 
                           child: _buildFeatureCard(

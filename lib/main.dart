@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -30,7 +31,10 @@ Future<void> main() async {
 
   // Initialize AdMob after the Flutter engine is running so the plugin is registered.
   // Calling plugin methods before an attached engine can cause MissingPluginException.
-  MobileAds.instance.initialize();
+  // Skip on web as MobileAds is not supported on web platform
+  if (!kIsWeb) {
+    MobileAds.instance.initialize();
+  }
 
   // Remove splash after first frame so UI has drawn
   WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -40,8 +44,14 @@ Future<void> main() async {
 
 Future<void> _initializeServices() async {
   // Initialize Hive storage
-  final directory = await getApplicationDocumentsDirectory();
-  Hive.init(directory.path);
+  if (kIsWeb) {
+    // On web, Hive uses IndexedDB automatically - no path needed
+    Hive.init('hive_db');
+  } else {
+    // On mobile/desktop, use the documents directory
+    final directory = await getApplicationDocumentsDirectory();
+    Hive.init(directory.path);
+  }
 
   // Add other async inits here (analytics, remote config, etc.)
 }

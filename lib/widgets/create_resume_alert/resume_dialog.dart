@@ -1,0 +1,765 @@
+// import 'package:flutter/material.dart';
+// import 'package:flutter_with_hive/core/themes.dart';
+// import 'package:flutter_with_hive/view/home_page/main_home_screen_controller.dart';
+
+// // Add Address Information
+
+// alertForResume(BuildContext context, {bool isEditAddressLocation = false, int? index, int? addressId}) {
+//   showDialog(
+//     context: context,
+//     builder: (_) => AlertDialog(
+//       contentPadding: EdgeInsets.all(0),
+//       insetPadding: EdgeInsets.only(left: 32, right: 32, top: 50, bottom: 50),
+//       content: Column(
+//         mainAxisSize: MainAxisSize.min,
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           //   _buildHeader(context),
+//           Flexible(
+//             child: SingleChildScrollView(
+//               padding: EdgeInsets.zero,
+//               child: Padding(
+//                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+//                 child: Column(
+//                   children: [
+//                     _buildHeader(context),
+//                     _buildProfilePicker(),
+//                     const SizedBox(height: 32),
+//                     _buildTextField(
+//                       controller: MainHomeScreenController.to.nameController,
+//                       label: 'Full Name',
+//                       icon: Icons.person_outline_rounded,
+//                       hint: 'e.g., John Smith',
+//                     ),
+//                     const SizedBox(height: 20),
+//                     _buildTextField(
+//                       controller: MainHomeScreenController.to.jobTitleController,
+//                       label: 'Job Title',
+//                       icon: Icons.work_outline_rounded,
+//                       hint: 'e.g., Senior Software Engineer',
+//                     ),
+//                     const SizedBox(height: 20),
+//                     Row(
+//                       children: [
+//                         Expanded(
+//                           child: _buildTextField(
+//                             controller: MainHomeScreenController.to.emailController,
+//                             label: 'Email',
+//                             icon: Icons.email_outlined,
+//                             hint: 'john@example.com',
+//                             keyboardType: TextInputType.emailAddress,
+//                           ),
+//                         ),
+//                         const SizedBox(width: 16),
+//                         Expanded(
+//                           child: _buildTextField(
+//                             controller: MainHomeScreenController.to.phoneController,
+//                             label: 'Phone',
+//                             icon: Icons.phone_outlined,
+//                             hint: '+1 234 567 890',
+//                             keyboardType: TextInputType.phone,
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                     const SizedBox(height: 20),
+//                     _buildTextField(
+//                       controller: MainHomeScreenController.to.locationController,
+//                       label: 'Location',
+//                       icon: Icons.location_on_outlined,
+//                       hint: 'e.g., New York, USA',
+//                     ),
+//                     const SizedBox(height: 20),
+//                     _buildTextField(
+//                       controller: MainHomeScreenController.to.summaryController,
+//                       label: 'Professional Summary',
+//                       icon: Icons.article_outlined,
+//                       hint: 'Tell us about your professional background...',
+//                       maxLines: 4,
+//                     ),
+//                     const SizedBox(height: 32),
+//                     // _buildActionButtons(context),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//       actions: [_buildActionButtons(context)],
+//     ),
+//   );
+// }
+
+// Widget _buildHeader(BuildContext context) {
+//   return Container(
+//     padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+//     decoration: const BoxDecoration(
+//       color: Color(0xFF6366F1),
+//       borderRadius: BorderRadius.only(topLeft: Radius.circular(28), topRight: Radius.circular(28)),
+//     ),
+//     child: Row(
+//       children: [
+//         Container(
+//           padding: const EdgeInsets.all(10),
+//           decoration: BoxDecoration(color: AppColors.whiteColor.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
+//           child: const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
+//         ),
+//         const SizedBox(width: 16),
+//         const Expanded(
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 'Create New Resume',
+//                 style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w700, letterSpacing: -0.5),
+//               ),
+//               SizedBox(height: 4),
+//               Text(
+//                 'Let\'s build your professional profile',
+//                 style: TextStyle(color: Colors.white70, fontSize: 13, fontWeight: FontWeight.w400),
+//               ),
+//             ],
+//           ),
+//         ),
+//         IconButton(
+//           onPressed: () => Navigator.of(context).pop(),
+//           icon: const Icon(Icons.close_rounded, color: Colors.white),
+//           padding: EdgeInsets.zero,
+//           constraints: const BoxConstraints(),
+//         ),
+//       ],
+//     ),
+//   );
+// }
+
+// Widget _buildProfilePicker() {
+//   return Column(
+//     children: [
+//       GestureDetector(
+//         onTap: () async {
+//           await MainHomeScreenController.to.pickImage();
+//         },
+//         child: Stack(
+//           children: [
+//             Container(
+//               width: 120,
+//               height: 120,
+//               decoration: BoxDecoration(
+//                 shape: BoxShape.circle,
+//                 gradient: null,
+//                 border: Border.all(color: const Color(0xFF6366F1).withOpacity(0.3), width: 3),
+//                 boxShadow: [BoxShadow(color: const Color(0xFF6366F1).withOpacity(0.3), blurRadius: 20, offset: const Offset(0, 8))],
+//               ),
+//               child: ClipOval(
+//                 child: MainHomeScreenController.to.profileImage.value != null
+//                     ? Image.file(MainHomeScreenController.to.profileImage.value!, fit: BoxFit.cover)
+//                     : const Icon(Icons.person, size: 50, color: Colors.white),
+//               ),
+//             ),
+//             Positioned(
+//               bottom: 0,
+//               right: 0,
+//               child: Container(
+//                 padding: const EdgeInsets.all(8),
+//                 decoration: BoxDecoration(
+//                   color: const Color(0xFF6366F1),
+//                   shape: BoxShape.circle,
+//                   border: Border.all(color: Colors.white, width: 3),
+//                   boxShadow: [BoxShadow(color: AppColors.blackColor.withOpacity(0.2), blurRadius: 8, offset: const Offset(0, 2))],
+//                 ),
+//                 child: const Icon(Icons.camera_alt_rounded, size: 18, color: Colors.white),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//       const SizedBox(height: 12),
+//       Text(
+//         'Change Photo',
+//         style: const TextStyle(color: Color(0xFF6366F1), fontSize: 14, fontWeight: FontWeight.w600),
+//       ),
+//     ],
+//   );
+// }
+
+// Widget _buildTextField({
+//   required TextEditingController controller,
+//   required String label,
+//   required IconData icon,
+//   required String hint,
+//   TextInputType? keyboardType,
+//   int maxLines = 1,
+// }) {
+//   return Column(
+//     crossAxisAlignment: CrossAxisAlignment.start,
+//     children: [
+//       Text(
+//         label,
+//         style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF1F2937), letterSpacing: -0.2),
+//       ),
+//       const SizedBox(height: 8),
+//       TextFormField(
+//         controller: controller,
+//         keyboardType: keyboardType,
+//         maxLines: maxLines,
+//         style: const TextStyle(fontSize: 15, color: Color(0xFF1F2937), fontWeight: FontWeight.w500),
+//         decoration: InputDecoration(
+//           hintText: hint,
+//           hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14, fontWeight: FontWeight.w400),
+//           prefixIcon: Icon(icon, color: const Color(0xFF6366F1), size: 22),
+//           filled: true,
+//           fillColor: const Color(0xFFF9FAFB),
+//           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+//           border: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(12),
+//             borderSide: BorderSide(color: Colors.grey.shade200),
+//           ),
+//           enabledBorder: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(12),
+//             borderSide: BorderSide(color: Colors.grey.shade200),
+//           ),
+//           focusedBorder: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(12),
+//             borderSide: const BorderSide(color: Color(0xFF6366F1), width: 2),
+//           ),
+//           errorBorder: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(12),
+//             borderSide: const BorderSide(color: Colors.red, width: 1.5),
+//           ),
+//         ),
+//         validator: (value) {
+//           if (value == null || value.isEmpty) {
+//             return '$label is required';
+//           }
+//           return null;
+//         },
+//       ),
+//     ],
+//   );
+// }
+
+// Widget _buildActionButtons(BuildContext context) {
+//   return Row(
+//     children: [
+//       Expanded(
+//         child: OutlinedButton(
+//           onPressed: () => Navigator.of(context).pop(),
+//           style: OutlinedButton.styleFrom(
+//             foregroundColor: const Color(0xFF6B7280),
+//             side: BorderSide(color: Colors.grey.shade300, width: 1.5),
+//             padding: const EdgeInsets.symmetric(vertical: 16),
+//             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+//           ),
+//           child: const Text('Cancel', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+//         ),
+//       ),
+//       const SizedBox(width: 12),
+//       Expanded(
+//         flex: 2,
+//         child: ElevatedButton(
+//           onPressed: () {
+//             // if (_formKey.currentState!.validate()) {
+//             //   Navigator.of(context).pop({
+//             //     'name': _nameMainHomeScreenController.to.text,
+//             //     'email': _emailMainHomeScreenController.to.text,
+//             //     'phone': _phoneMainHomeScreenController.to.text,
+//             //     'jobTitle': _jobTitleMainHomeScreenController.to.text,
+//             //     'location': _locationMainHomeScreenController.to.text,
+//             //     'summary': _summaryMainHomeScreenController.to.text,
+//             //     'profileImage': _profileImage?.path,
+//             //   });
+//             // }
+//           },
+//           style: ElevatedButton.styleFrom(
+//             backgroundColor: const Color(0xFF6366F1),
+//             foregroundColor: Colors.white,
+//             padding: const EdgeInsets.symmetric(vertical: 16),
+//             elevation: 0,
+//             shadowColor: const Color(0xFF6366F1).withOpacity(0.5),
+//             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+//           ),
+//           child: const Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Icon(Icons.check_circle_outline, size: 20),
+//               SizedBox(width: 8),
+//               Text('Create Resume', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.2)),
+//             ],
+//           ),
+//         ),
+//       ),
+//     ],
+//   );
+// }
+import 'package:flutter/material.dart';
+
+import 'package:flutter_with_hive/view/home_page/main_home_screen_controller.dart';
+import 'package:get/get.dart';
+
+// GetX Controller for Resume Dialog
+class ResumeDialogController extends GetxController with GetSingleTickerProviderStateMixin {
+  late AnimationController headerAnimController;
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void onInit() {
+    super.onInit();
+    headerAnimController = AnimationController(vsync: this, duration: const Duration(seconds: 3))..repeat(reverse: true);
+  }
+
+  @override
+  void onClose() {
+    headerAnimController.dispose();
+    super.onClose();
+  }
+
+  bool validateAndSubmit() {
+    if (formKey.currentState!.validate()) {
+      Get.back();
+      Get.snackbar(
+        'Success',
+        'Resume created successfully!',
+        backgroundColor: const Color(0xFF10B981),
+        colorText: Colors.white,
+        snackPosition: SnackPosition.TOP,
+        duration: const Duration(seconds: 2),
+        margin: const EdgeInsets.all(16),
+        borderRadius: 12,
+      );
+      return true;
+    }
+    return false;
+  }
+}
+
+// Premium Alert Dialog with Glassmorphism and Smooth Animations
+Future<dynamic> showPremiumResumeDialog(BuildContext context, {bool isEditMode = false, int? index, int? addressId}) async {
+  // Initialize controller with fenix: true for automatic disposal when no longer used
+  // This prevents premature deletion errors
+  final controller = Get.put(ResumeDialogController(), permanent: false);
+
+  try {
+    final result = await showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: 'Resume Dialog',
+      barrierColor: Colors.black.withValues(alpha: 0.6),
+      transitionDuration: const Duration(milliseconds: 400),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return const SizedBox.shrink();
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        final curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeOutCubic, reverseCurve: Curves.easeInCubic);
+
+        return ScaleTransition(
+          scale: Tween<double>(begin: 0.8, end: 1.0).animate(curvedAnimation),
+          child: FadeTransition(
+            opacity: animation,
+            child: Center(
+              child: _PremiumResumeDialog(isEditMode: isEditMode, index: index, addressId: addressId, controller: controller),
+            ),
+          ),
+        );
+      },
+    );
+
+    return result;
+  } finally {
+    // Clean up controller after dialog closes and animations complete
+    // Use Future.microtask to ensure it runs after current frame
+    Future.microtask(() {
+      if (Get.isRegistered<ResumeDialogController>()) {
+        Get.delete<ResumeDialogController>();
+      }
+    });
+  }
+}
+
+class _PremiumResumeDialog extends StatelessWidget {
+  final bool isEditMode;
+  final int? index;
+  final int? addressId;
+  final ResumeDialogController controller;
+
+  const _PremiumResumeDialog({this.isEditMode = false, this.index, this.addressId, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      type: MaterialType.transparency,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+        constraints: const BoxConstraints(maxWidth: 500),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(32),
+          boxShadow: [
+            BoxShadow(color: const Color(0xFF6366F1).withValues(alpha: 0.3), blurRadius: 60, spreadRadius: 10, offset: const Offset(0, 20)),
+            BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 40, offset: const Offset(0, 15)),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(32),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildPremiumHeader(context, controller),
+              Flexible(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.all(28),
+                  child: Form(
+                    key: controller.formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildProfileSection(),
+                        const SizedBox(height: 32),
+                        _buildPremiumTextField(
+                          controller: MainHomeScreenController.to.nameController,
+                          label: 'Full Name',
+                          icon: Icons.person_rounded,
+                          hint: 'e.g., John Smith',
+                        ),
+                        const SizedBox(height: 20),
+                        _buildPremiumTextField(
+                          controller: MainHomeScreenController.to.jobTitleController,
+                          label: 'Job Title',
+                          icon: Icons.work_rounded,
+                          hint: 'e.g., Senior Software Engineer',
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: _buildPremiumTextField(
+                                controller: MainHomeScreenController.to.emailController,
+                                label: 'Email',
+                                icon: Icons.email_rounded,
+                                hint: 'john@example.com',
+                                keyboardType: TextInputType.emailAddress,
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: _buildPremiumTextField(
+                                controller: MainHomeScreenController.to.phoneController,
+                                label: 'Phone',
+                                icon: Icons.phone_rounded,
+                                hint: '+1 234 567 890',
+                                keyboardType: TextInputType.phone,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        _buildPremiumTextField(
+                          controller: MainHomeScreenController.to.locationController,
+                          label: 'Location',
+                          icon: Icons.location_on_rounded,
+                          hint: 'e.g., New York, USA',
+                        ),
+                        const SizedBox(height: 20),
+                        _buildPremiumTextField(
+                          controller: MainHomeScreenController.to.summaryController,
+                          label: 'Professional Summary',
+                          icon: Icons.article_rounded,
+                          hint: 'Tell us about your professional background...',
+                          maxLines: 4,
+                        ),
+                        const SizedBox(height: 32),
+                        _buildActionButtons(context, controller),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPremiumHeader(BuildContext context, ResumeDialogController controller) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 28),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF6366F1), Color(0xFF8B5CF6), Color(0xFFEC4899)],
+        ),
+        boxShadow: [BoxShadow(color: const Color(0xFF6366F1).withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, 10))],
+      ),
+      child: Row(
+        children: [
+          AnimatedBuilder(
+            animation: controller.headerAnimController,
+            builder: (context, child) {
+              return Transform.scale(
+                scale: 1.0 + (0.1 * controller.headerAnimController.value),
+                child: Container(
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.25),
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 15, spreadRadius: 2)],
+                  ),
+                  child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 28),
+                ),
+              );
+            },
+          ),
+          const SizedBox(width: 16),
+          const Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Create New Resume',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: -0.5,
+                    shadows: [Shadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 2))],
+                  ),
+                ),
+                SizedBox(height: 6),
+                Text(
+                  'Build your professional profile',
+                  style: TextStyle(color: Colors.white70, fontSize: 14, fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), shape: BoxShape.circle),
+            child: IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: const Icon(Icons.close_rounded, color: Colors.white, size: 24),
+              padding: const EdgeInsets.all(8),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProfileSection() {
+    return Center(
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: () async {
+              await MainHomeScreenController.to.pickImage();
+            },
+            child: Stack(
+              children: [
+                Container(
+                  width: 130,
+                  height: 130,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [const Color(0xFF6366F1).withValues(alpha: 0.2), const Color(0xFFEC4899).withValues(alpha: 0.2)],
+                    ),
+                    border: Border.all(color: const Color(0xFF6366F1).withValues(alpha: 0.4), width: 4),
+                    boxShadow: [BoxShadow(color: const Color(0xFF6366F1).withValues(alpha: 0.3), blurRadius: 30, offset: const Offset(0, 15))],
+                  ),
+                  child: ClipOval(
+                    child: Obx(
+                      () => MainHomeScreenController.to.profileImage.value != null
+                          ? Image.file(MainHomeScreenController.to.profileImage.value!, fit: BoxFit.cover)
+                          : Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [const Color(0xFF6366F1).withValues(alpha: 0.1), const Color(0xFFEC4899).withValues(alpha: 0.1)],
+                                ),
+                              ),
+                              child: const Icon(Icons.person_rounded, size: 60, color: Color(0xFF6366F1)),
+                            ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)]),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 4),
+                      boxShadow: [BoxShadow(color: const Color(0xFF6366F1).withValues(alpha: 0.5), blurRadius: 15, offset: const Offset(0, 5))],
+                    ),
+                    child: const Icon(Icons.camera_alt_rounded, size: 20, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          const _UploadPhotoLabel(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPremiumTextField({
+    required TextEditingController controller,
+    required String label,
+    required IconData icon,
+    required String hint,
+    TextInputType? keyboardType,
+    int maxLines = 1,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 4, bottom: 10),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [const Color(0xFF6366F1).withValues(alpha: 0.15), const Color(0xFFEC4899).withValues(alpha: 0.15)],
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(icon, size: 16, color: const Color(0xFF6366F1)),
+              ),
+              const SizedBox(width: 10),
+              Text(
+                label,
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Color(0xFF1F2937), letterSpacing: -0.2),
+              ),
+            ],
+          ),
+        ),
+        TextFormField(
+          controller: controller,
+          keyboardType: keyboardType,
+          maxLines: maxLines,
+          style: const TextStyle(fontSize: 15, color: Color(0xFF1F2937), fontWeight: FontWeight.w500),
+          decoration: InputDecoration(
+            hintText: hint,
+            hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14, fontWeight: FontWeight.w400),
+            filled: true,
+            fillColor: const Color(0xFFF9FAFB),
+            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: maxLines > 1 ? 18 : 16),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(color: Colors.grey.shade200, width: 1.5),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(color: Color(0xFF6366F1), width: 2.5),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(color: Colors.red, width: 2),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(color: Colors.red, width: 2.5),
+            ),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return '$label is required';
+            }
+            if (label == 'Email' && !value.contains('@')) {
+              return 'Please enter a valid email';
+            }
+            return null;
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildActionButtons(BuildContext context, ResumeDialogController controller) {
+    return Row(
+      children: [
+        Expanded(
+          child: OutlinedButton(
+            onPressed: () => Navigator.of(context).pop(),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: const Color(0xFF6B7280),
+              side: BorderSide(color: Colors.grey.shade300, width: 2),
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            ),
+            child: const Text('Cancel', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+          ),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          flex: 2,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFF6366F1), Color(0xFF8B5CF6), Color(0xFFEC4899)],
+              ),
+              boxShadow: [BoxShadow(color: const Color(0xFF6366F1).withValues(alpha: 0.4), blurRadius: 20, offset: const Offset(0, 8))],
+            ),
+            child: ElevatedButton(
+              onPressed: () {
+                controller.validateAndSubmit();
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+                foregroundColor: Colors.white,
+                shadowColor: Colors.transparent,
+                padding: const EdgeInsets.symmetric(vertical: 18),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.check_circle_rounded, size: 22),
+                  SizedBox(width: 10),
+                  Text('Create Resume', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, letterSpacing: 0.3)),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// Optimized helper widgets with const constructors
+class _UploadPhotoLabel extends StatelessWidget {
+  const _UploadPhotoLabel();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [const Color(0xFF6366F1).withValues(alpha: 0.1), const Color(0xFFEC4899).withValues(alpha: 0.1)]),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFF6366F1).withValues(alpha: 0.3)),
+      ),
+      child: const Text(
+        'Upload Photo',
+        style: TextStyle(color: Color(0xFF6366F1), fontSize: 15, fontWeight: FontWeight.w700),
+      ),
+    );
+  }
+}

@@ -4,26 +4,87 @@ import 'package:flutter_with_hive/core/themes.dart';
 import 'package:flutter_with_hive/view/home_page/main_home_screen_controller.dart';
 import 'package:flutter_with_hive/widgets/text/app_style.dart';
 import 'package:get/get.dart';
+import 'package:flutter_with_hive/widgets/create_resume_alert/responsive_widget.dart';
 
 // Main Screen with Bottom Navigation
 class MainHomeScreen extends StatelessWidget {
   const MainHomeScreen({super.key});
 
+  //   @override
+  // Widget build(BuildContext context) {
+  //   final MainHomeScreenController mainHomeScreenController = Get.put(MainHomeScreenController());
+
+  //   return Scaffold(
+  //     extendBody: true,
+  //     body: Obx(() => mainHomeScreenController.screens[mainHomeScreenController.currentIndex.value]),
+  //     bottomNavigationBar: Obx(() {
+  //       // Hide bottom bar when index is 3
+  //       if (mainHomeScreenController.currentIndex.value == 2) {
+  //         return const SizedBox.shrink(); // hides it completely
+  //       }
+  //       return _buildFloatingNavBar(mainHomeScreenController);
+  //     }),
+  //     //bottomNavigationBar: Obx(() => _buildFloatingNavBar(mainHomeScreenController)),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveWidget.isMobile(context);
     final MainHomeScreenController mainHomeScreenController = Get.put(MainHomeScreenController());
+    // Use ResponsiveWidget to provide different layouts per breakpoint.
+    return ResponsiveWidget(
+      mobile: Scaffold(
+        // drawer: isMobile ? const CustomDrawer() : null,
+        extendBody: true,
+        body: Obx(() => mainHomeScreenController.screens[mainHomeScreenController.currentIndex.value]),
+        bottomNavigationBar: Obx(() {
 
-    return Scaffold(
-      extendBody: true,
-      body: Obx(() => mainHomeScreenController.screens[mainHomeScreenController.currentIndex.value]),
-      bottomNavigationBar: Obx(() {
-        // Hide bottom bar when index is 3
-        if (mainHomeScreenController.currentIndex.value == 2) {
-          return const SizedBox.shrink(); // hides it completely
-        }
-        return _buildFloatingNavBar(mainHomeScreenController);
-      }),
-      //bottomNavigationBar: Obx(() => _buildFloatingNavBar(mainHomeScreenController)),
+          // Hide bottom bar when index is 2 (as original logic)
+          if (mainHomeScreenController.currentIndex.value == 2) {
+            return const SizedBox.shrink();
+          }
+          return _buildFloatingNavBar(mainHomeScreenController);
+        }),
+      ),
+
+      // Tablet: center the content inside a constrained width but keep bottom nav
+      tablet: Scaffold(
+        extendBody: true,
+        body: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 800.w),
+            child: Obx(() => mainHomeScreenController.screens[mainHomeScreenController.currentIndex.value]),
+          ),
+        ),
+        bottomNavigationBar: Obx(() {
+          if (mainHomeScreenController.currentIndex.value == 2) return const SizedBox.shrink();
+          return _buildFloatingNavBar(mainHomeScreenController);
+        }),
+      ),
+
+      // Desktop: use NavigationRail on left and show content on right, no bottom nav
+      desktop: Scaffold(
+        body: Row(
+          children: [
+            // Left navigation rail
+            NavigationRail(
+              selectedIndex: mainHomeScreenController.currentIndex.value,
+              onDestinationSelected: (i) => mainHomeScreenController.changePage(i),
+              labelType: NavigationRailLabelType.all,
+              destinations: const [
+                NavigationRailDestination(icon: Icon(Icons.home_rounded), label: Text('Home')),
+                NavigationRailDestination(icon: Icon(Icons.grid_view_rounded), label: Text('Templates')),
+                NavigationRailDestination(icon: Icon(Icons.folder_open_rounded), label: Text('My CVs')),
+                NavigationRailDestination(icon: Icon(Icons.person_rounded), label: Text('Profile')),
+              ],
+            ),
+
+            // Content area
+            Expanded(child: Obx(() => mainHomeScreenController.screens[mainHomeScreenController.currentIndex.value])),
+          ],
+        ),
+      ),
     );
   }
 
