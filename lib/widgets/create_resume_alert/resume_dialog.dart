@@ -295,6 +295,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_with_hive/view/home_page/main_home_screen_controller.dart';
+import 'package:flutter_with_hive/widgets/common/custom_app_text_field.dart';
+import 'package:flutter_with_hive/widgets/common/gradient_primary_button.dart';
 import 'package:get/get.dart';
 
 // GetX Controller for Resume Dialog
@@ -416,34 +418,42 @@ class _PremiumResumeDialog extends StatelessWidget {
                       children: [
                         _buildProfileSection(),
                         const SizedBox(height: 32),
-                        _buildPremiumTextField(
+                        CustomAppTextField(
                           controller: MainHomeScreenController.to.nameController,
                           label: 'Full Name',
                           icon: Icons.person_rounded,
                           hint: 'e.g., John Smith',
+                          keyboardType: TextInputType.name,
                         ),
                         const SizedBox(height: 20),
-                        _buildPremiumTextField(
+                        CustomAppTextField(
                           controller: MainHomeScreenController.to.jobTitleController,
                           label: 'Job Title',
                           icon: Icons.work_rounded,
                           hint: 'e.g., Senior Software Engineer',
+                          keyboardType: TextInputType.text,
                         ),
                         const SizedBox(height: 20),
                         Row(
                           children: [
                             Expanded(
-                              child: _buildPremiumTextField(
+                              child: CustomAppTextField(
                                 controller: MainHomeScreenController.to.emailController,
                                 label: 'Email',
                                 icon: Icons.email_rounded,
                                 hint: 'john@example.com',
                                 keyboardType: TextInputType.emailAddress,
+                                // Custom email validator
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) return 'Email is required';
+                                  if (!value.contains('@')) return 'Please enter a valid email';
+                                  return null;
+                                },
                               ),
                             ),
                             const SizedBox(width: 16),
                             Expanded(
-                              child: _buildPremiumTextField(
+                              child: CustomAppTextField(
                                 controller: MainHomeScreenController.to.phoneController,
                                 label: 'Phone',
                                 icon: Icons.phone_rounded,
@@ -454,14 +464,14 @@ class _PremiumResumeDialog extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 20),
-                        _buildPremiumTextField(
+                        CustomAppTextField(
                           controller: MainHomeScreenController.to.locationController,
                           label: 'Location',
                           icon: Icons.location_on_rounded,
                           hint: 'e.g., New York, USA',
                         ),
                         const SizedBox(height: 20),
-                        _buildPremiumTextField(
+                        CustomAppTextField(
                           controller: MainHomeScreenController.to.summaryController,
                           label: 'Professional Summary',
                           icon: Icons.article_rounded,
@@ -612,81 +622,7 @@ class _PremiumResumeDialog extends StatelessWidget {
     );
   }
 
-  Widget _buildPremiumTextField({
-    required TextEditingController controller,
-    required String label,
-    required IconData icon,
-    required String hint,
-    TextInputType? keyboardType,
-    int maxLines = 1,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 4, bottom: 10),
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [const Color(0xFF6366F1).withValues(alpha: 0.15), const Color(0xFFEC4899).withValues(alpha: 0.15)],
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Icon(icon, size: 16, color: const Color(0xFF6366F1)),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                label,
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Color(0xFF1F2937), letterSpacing: -0.2),
-              ),
-            ],
-          ),
-        ),
-        TextFormField(
-          controller: controller,
-          keyboardType: keyboardType,
-          maxLines: maxLines,
-          style: const TextStyle(fontSize: 15, color: Color(0xFF1F2937), fontWeight: FontWeight.w500),
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14, fontWeight: FontWeight.w400),
-            filled: true,
-            fillColor: const Color(0xFFF9FAFB),
-            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: maxLines > 1 ? 18 : 16),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: Colors.grey.shade200, width: 1.5),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(color: Color(0xFF6366F1), width: 2.5),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(color: Colors.red, width: 2),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(color: Colors.red, width: 2.5),
-            ),
-          ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return '$label is required';
-            }
-            if (label == 'Email' && !value.contains('@')) {
-              return 'Please enter a valid email';
-            }
-            return null;
-          },
-        ),
-      ],
-    );
-  }
+  // Removed old _buildPremiumTextField in favor of reusable CustomAppTextField
 
   Widget _buildActionButtons(BuildContext context, ResumeDialogController controller) {
     return Row(
@@ -706,37 +642,7 @@ class _PremiumResumeDialog extends StatelessWidget {
         const SizedBox(width: 16),
         Expanded(
           flex: 2,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Color(0xFF6366F1), Color(0xFF8B5CF6), Color(0xFFEC4899)],
-              ),
-              boxShadow: [BoxShadow(color: const Color(0xFF6366F1).withValues(alpha: 0.4), blurRadius: 20, offset: const Offset(0, 8))],
-            ),
-            child: ElevatedButton(
-              onPressed: () {
-                controller.validateAndSubmit();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,
-                foregroundColor: Colors.white,
-                shadowColor: Colors.transparent,
-                padding: const EdgeInsets.symmetric(vertical: 18),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.check_circle_rounded, size: 22),
-                  SizedBox(width: 10),
-                  Text('Create Resume', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, letterSpacing: 0.3)),
-                ],
-              ),
-            ),
-          ),
+          child: GradientPrimaryButton(onPressed: () => controller.validateAndSubmit(), text: 'Create Resume', icon: Icons.check_circle_rounded),
         ),
       ],
     );
